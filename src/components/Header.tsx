@@ -1,13 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, Layers } from 'lucide-react';
+import { Menu, X, Layers } from 'lucide-react';
 import logo from '../assets/images/logo-1.png';
 import { useDesign } from '@/context/DesignContext';
 
 export default function Header() {
   const { designVariant, setDesignVariant } = useDesign();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full mx-auto px-4 backdrop-blur-md border-b border-dashed">
@@ -21,7 +23,7 @@ export default function Header() {
             <nav className="hidden lg:flex gap-6 items-center font-medium text-sm text-foreground/80 px-5 py-2.5 border rounded-3xl border-white/20">
               <Link href="/" className="hover:text-primary transition-colors">Home</Link>
               <Link href="/about" className="hover:text-primary transition-colors">About Us</Link>
-              <Link href="/#features" className="hover:text-primary transition-colors">Services</Link>
+              <Link href="/services" className="hover:text-primary transition-colors">Services</Link>
               <Link href="/#pricing" className="hover:text-primary transition-colors">Plans</Link>
               <Link href="/#contact" className="hover:text-primary transition-colors">Contact</Link>
             </nav>
@@ -60,13 +62,61 @@ export default function Header() {
                 Get Started
               </button>
 
-              <button className="lg:hidden p-2 text-foreground">
-                <Menu size={24} />
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+                aria-label="Toggle Navigation Menu"
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
           </div>
+
+          {/* Mobile Drawer Menu */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden border-t border-white/10 bg-[#0a0a0a]/95 backdrop-blur-xl px-6 py-6 space-y-4">
+              <nav className="flex flex-col space-y-4 text-base font-medium">
+                <Link 
+                  href="/" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-primary transition-colors py-1"
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/about" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-primary transition-colors py-1"
+                >
+                  About Us
+                </Link>
+                <Link 
+                  href="/services" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-primary font-semibold transition-colors py-1"
+                >
+                  Services
+                </Link>
+                <Link 
+                  href="/#pricing" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-primary transition-colors py-1"
+                >
+                  Plans
+                </Link>
+                <Link 
+                  href="/#contact" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-primary transition-colors py-1"
+                >
+                  Contact
+                </Link>
+              </nav>
+            </div>
+          )}
         </div>
       </div>
     </header>
   );
 }
+

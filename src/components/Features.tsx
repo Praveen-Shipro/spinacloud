@@ -81,7 +81,7 @@ export default function Features() {
 
   // Design 1 Figma Classic Variant
   return (
-    <section className="max-w-6xl mx-auto px-4 ">
+    <section className="max-w-6xl mx-auto px-4 pt-5 md:pt-12">
       <div className="px-1 md:px-8 border-y border-gray-300/40 lg:border-0 py-12 lg:py-0">
       <div className="container mx-auto ">
         <h2 className="text-3xl md:text-4xl font-bold text-center font-montserrat mb-16 text-[#F0E3DE] opacity-75 ">

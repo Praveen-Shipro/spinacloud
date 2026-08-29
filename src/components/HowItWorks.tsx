@@ -142,7 +142,7 @@ export default function HowItWorks() {
 
   // Design 1 Figma Classic Variant
   return (
-    <section className=" px-4 relative">
+    <section className=" px-4 relative bg-[#282828]">
       <div className="container mx-auto max-w-6xl border-b border-gray-300/40 py-24">
         <div className="grid lg:grid-cols-2 gap-8 px-4 items-center">
           {/* Terminal Mockup */}

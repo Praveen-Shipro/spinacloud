@@ -108,24 +108,38 @@ export default function UseCases() {
 
   // Design 1 Figma Classic Variant
   return (
-    <section className="py-12 lg:py-24 px-4">
-      <div className="container mx-auto max-w-6xl ">
+    <section className="py-16 lg:py-24 px-4 bg-[#282828] border-y border-gray-800/80 relative">
+      <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-primary font-semibold tracking-wider text-lg uppercase mb-4 font-montserrat">Choose Your Path</h2>
-          <h3 className="text-2xl md:text-4xl font-bold text-[#F0E3DE] mb-6">One Platform, Every Use Case</h3>
-          <p className="text-neutral-400 max-w-5xl mx-auto text-base">
+          <h3 className="text-2xl md:text-4xl font-bold text-[#F0E3DE] mb-6 font-montserrat">One Platform, Every Use Case</h3>
+          <p className="text-neutral-300 max-w-4xl mx-auto text-base font-nunito font-light">
             SpinACloud is built for a wide range of cloud users - from solo developers to large enterprises. Choose the path that fits you:
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px px-2  border border-gray-300/40 lg:border-y lg:border-0">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
           {useCases.map((useCase, idx) => (
-            <div key={idx} className={`bg-[#0a0a0a] p-10 hover:bg-white/2 transition-colors group ${idx === 1 || idx === 4 ? "lg:border-x" : "border-0"} ${idx === 0 || idx ===1 || idx === 2 ? "lg:border-b" : ""}`}>
-              <Image alt='icon' src={useCase.icon} height={38} width={38}/>
-              <h4 className="text-xl font-medium text-white my-2">{useCase.title}</h4>
-              <p className="text-neutral-400 text-sm font-normal leading-relaxed">
-                {useCase.description}
-              </p>
+            <div
+              key={idx}
+              className="bg-[#1c1d22] border border-gray-700/60 p-8 rounded-xl hover:border-primary/60 hover:bg-[#22242a] transition-all duration-300 group flex flex-col justify-between shadow-lg shadow-black/30"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-lg bg-[#272830] border border-gray-700/60 flex items-center justify-center group-hover:border-primary/40 group-hover:scale-105 transition-all duration-300">
+                    <Image alt='icon' src={useCase.icon} height={32} width={32} />
+                  </div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-300 px-2.5 py-1 rounded bg-[#272830] border border-gray-700/60">
+                    {useCase.tag}
+                  </span>
+                </div>
+                <h4 className="text-xl font-bold font-montserrat text-white mb-3 group-hover:text-primary transition-colors">
+                  {useCase.title}
+                </h4>
+                <p className="text-[#F0E3DE] text-sm font-nunito font-extralight opacity-80 leading-relaxed">
+                  {useCase.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

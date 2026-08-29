@@ -3,17 +3,11 @@
 import { useState } from 'react';
 import { Check, ArrowRight, Zap, Sparkles, ShieldCheck } from 'lucide-react';
 import { useDesign } from '@/context/DesignContext';
-import { Geist, Geist_Mono, Montserrat, Nunito, Inter } from "next/font/google";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import 'swiper/css/pagination';
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 const plans = [
   {
