@@ -63,7 +63,7 @@ export default function Footer() {
                   <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider text-orange-400">Quick Navigation</h4>
                   <ul className="space-y-3.5">
                     <li>
-                      <Link href="#features" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2 text-sm group">
+                      <Link href="/" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2 text-sm group">
                         <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:translate-x-1 transition-transform" /> Home
                       </Link>
                     </li>
@@ -73,8 +73,18 @@ export default function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <Link href="#pricing" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2 text-sm group">
+                      <Link href="/services" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2 text-sm group">
+                        <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:translate-x-1 transition-transform" /> Services
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/#pricing" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2 text-sm group">
                         <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:translate-x-1 transition-transform" /> Pricing Plans
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/contact" className="text-neutral-400 hover:text-white transition-colors flex items-center gap-2 text-sm group">
+                        <ArrowRight className="w-3.5 h-3.5 text-neutral-600 group-hover:translate-x-1 transition-transform" /> Contact Us
                       </Link>
                     </li>
                   </ul>

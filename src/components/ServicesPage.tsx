@@ -621,7 +621,7 @@ export default function ServicesPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="px-8 py-3.5 rounded-full bg-black text-white font-semibold hover:bg-neutral-900 transition-all text-sm shadow-md"
                 >
                   Contact Us
@@ -947,7 +947,7 @@ export default function ServicesPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="px-8 py-3 rounded-full bg-black text-white font-montserrat font-semibold hover:bg-neutral-900 transition-colors text-sm"
               >
                 Contact Us

@@ -25,7 +25,7 @@ export default function Header() {
               <Link href="/about" className="hover:text-primary transition-colors">About Us</Link>
               <Link href="/services" className="hover:text-primary transition-colors">Services</Link>
               <Link href="/#pricing" className="hover:text-primary transition-colors">Plans</Link>
-              <Link href="/#contact" className="hover:text-primary transition-colors">Contact</Link>
+              <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
             </nav>
 
             <div className="flex items-center gap-3">
@@ -93,7 +93,7 @@ export default function Header() {
                 <Link 
                   href="/services" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-primary font-semibold transition-colors py-1"
+                  className="hover:text-primary transition-colors py-1"
                 >
                   Services
                 </Link>
@@ -105,7 +105,7 @@ export default function Header() {
                   Plans
                 </Link>
                 <Link 
-                  href="/#contact" 
+                  href="/contact" 
                   onClick={() => setMobileMenuOpen(false)}
                   className="hover:text-primary transition-colors py-1"
                 >
