@@ -4,6 +4,9 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { DesignProvider } from "@/context/DesignContext";
+import DynamicAmbientGlow from "@/components/DynamicAmbientGlow";
+import SmoothScroll from "@/components/SmoothScroll";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,29 +58,39 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${nunito.variable} ${inter.variable} ${roboto.variable} ${courierPrime.variable} h-full antialiased scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${nunito.variable} ${inter.variable} ${roboto.variable} ${courierPrime.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col selection:bg-blue-500/30 relative mx-auto">
-        <DesignProvider>
-          <div className="hidden lg:flex fixed inset-0 pointer-events-none justify-center z-40 ">
-            <div className="w-full max-w-6xl h-full relative ">
-              <div 
-                className="absolute top-0 left-0 h-full w-[1px]"
-                style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg width='2' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cline x1='1' y1='0' x2='1' y2='100%25' stroke='%23d4d4d4' stroke-opacity='0.5' stroke-width='1' stroke-dasharray='10%2c 14' stroke-linecap='square'/%3e%3c/svg%3e\")", backgroundRepeat: 'repeat-y' }}
-              />
-              <div 
-                className="absolute top-0 right-0 h-full w-[1px]"
-                style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg width='2' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cline x1='1' y1='0' x2='1' y2='100%25' stroke='%23d4d4d4'  stroke-width='1' stroke-dasharray='10%2c 14' stroke-linecap='square'/%3e%3c/svg%3e\")", backgroundRepeat: 'repeat-y' }}
-              />
+      <body className="min-h-screen flex flex-col selection:bg-blue-500/30 relative mx-auto bg-[#080808]">
+        <SmoothScroll>
+          <DesignProvider>
+            <div 
+              className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+              aria-hidden="true"
+            >
+              <div className="absolute inset-0 dot-grid-pattern opacity-90" />
+              <DynamicAmbientGlow />
             </div>
-          </div>
 
-          <Header />
-          <main className="flex-1 flex flex-col relative z-[1]">
-            {children}
-          </main>
-          <Footer />
-        </DesignProvider>
+            <div className="hidden lg:flex fixed inset-0 pointer-events-none justify-center z-40 ">
+              <div className="w-full max-w-6xl h-full relative ">
+                <div 
+                  className="absolute top-0 left-0 h-full w-[1px]"
+                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg width='2' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cline x1='1' y1='0' x2='1' y2='100%25' stroke='%23d4d4d4' stroke-opacity='0.5' stroke-width='1' stroke-dasharray='10%2c 14' stroke-linecap='square'/%3e%3c/svg%3e\")", backgroundRepeat: 'repeat-y' }}
+                />
+                <div 
+                  className="absolute top-0 right-0 h-full w-[1px]"
+                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3csvg width='2' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cline x1='1' y1='0' x2='1' y2='100%25' stroke='%23d4d4d4'  stroke-width='1' stroke-dasharray='10%2c 14' stroke-linecap='square'/%3e%3c/svg%3e\")", backgroundRepeat: 'repeat-y' }}
+                />
+              </div>
+            </div>
+
+            <Header />
+            <main className="flex-1 flex flex-col relative z-[1]">
+              {children}
+            </main>
+            <Footer />
+          </DesignProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

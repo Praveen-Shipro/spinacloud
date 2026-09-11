@@ -16,7 +16,8 @@ import {
   Sparkles,
   MessageSquare,
   Headphones,
-  ShieldCheck
+  ShieldCheck,
+  AlertCircle
 } from 'lucide-react';
 import { useDesign } from '@/context/DesignContext';
 
@@ -51,7 +52,7 @@ const contactInfo = [
     icon: MapPin,
     title: 'Office Location',
     value: 'Belgaum (Belagavi), Karnataka, India',
-    href: null,
+    href: 'https://maps.app.goo.gl/i49xsCH3WWh7A6y7A',
     highlight: false,
   },
 ];
@@ -95,6 +96,9 @@ export default function ContactUsPage() {
     topic: '',
     message: '',
   });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -105,16 +109,112 @@ export default function ContactUsPage() {
     setOpenFaqIndex(prev => (prev === index ? null : index));
   };
 
+  const validateField = (name: string, value: string): string => {
+    let error = '';
+    switch (name) {
+      case 'fullName':
+        if (!value.trim()) {
+          error = 'Full name is required';
+        } else if (value.trim().length < 4) {
+          error = 'Full name must be at least 4 characters long';
+        }
+        break;
+      case 'email':
+        if (!value.trim()) {
+          error = 'Email address is required';
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.trim())) {
+          error = 'Please enter a valid email address';
+        }
+        break;
+      case 'phone':
+        const cleanPhone = value.replace(/\D/g, '');
+        if (!cleanPhone) {
+          error = 'Phone number is required';
+        } else if (cleanPhone.length !== 10) {
+          error = 'Phone number must be exactly 10 digits long';
+        }
+        break;
+      case 'topic':
+        if (!value.trim()) {
+          error = 'Please select a topic';
+        }
+        break;
+      case 'message':
+        if (!value.trim()) {
+          error = 'Message is required';
+        } else if (value.trim().length < 10) {
+          error = 'Message must be at least 10 characters long';
+        }
+        break;
+      default:
+        break;
+    }
+    return error;
+  };
+
+  const validateAll = () => {
+    const newErrors: Record<string, string> = {};
+    Object.keys(formData).forEach(key => {
+      const error = validateField(key, formData[key as keyof typeof formData]);
+      if (error) {
+        newErrors[key] = error;
+      }
+    });
+    return newErrors;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    let formattedValue = value;
+
+    if (name === 'phone') {
+      let digits = value.replace(/\D/g, '');
+      if (digits.length === 12 && digits.startsWith('91')) {
+        digits = digits.slice(2);
+      }
+      formattedValue = digits.slice(0, 10);
+    }
+
+    setFormData(prev => ({ ...prev, [name]: formattedValue }));
+
+    if (touched[name]) {
+      const error = validateField(name, formattedValue);
+      setErrors(prev => ({
+        ...prev,
+        [name]: error,
+      }));
+    }
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+    const error = validateField(field, formData[field as keyof typeof formData]);
+    setErrors(prev => ({
+      ...prev,
+      [field]: error,
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    setTouched({
+      fullName: true,
+      email: true,
+      phone: true,
+      topic: true,
+      message: true,
+    });
+
+    const formErrors = validateAll();
+    setErrors(formErrors);
+
+    if (Object.keys(formErrors).length > 0) {
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate async submission
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
@@ -125,6 +225,8 @@ export default function ContactUsPage() {
         topic: '',
         message: '',
       });
+      setErrors({});
+      setTouched({});
     }, 1000);
   };
 
@@ -172,37 +274,42 @@ export default function ContactUsPage() {
                 <div className="space-y-4">
                   {contactInfo.map((info, idx) => {
                     const IconComp = info.icon;
-                    return (
-                      <div
-                        key={idx}
-                        className={`p-6 rounded-2xl transition-all duration-300 backdrop-blur-xl flex items-start gap-4 ${
-                          info.highlight
-                            ? 'bg-gradient-to-br from-orange-500/[0.08] to-white/[0.02] border border-orange-500/40 shadow-lg shadow-orange-500/5'
-                            : 'bg-white/[0.02] border border-white/10 hover:border-orange-500/30'
-                        }`}
-                      >
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
-                          info.highlight ? 'bg-orange-500/20 text-orange-400' : 'bg-white/5 text-neutral-300'
-                        }`}>
+
+                    const cardContent = (
+                      <>
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors bg-white/5 text-neutral-300 group-hover:bg-orange-500/20 group-hover:text-orange-400">
                           <IconComp size={22} />
                         </div>
                         <div>
                           <h3 className="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-1">
                             {info.title}
                           </h3>
-                          {info.href ? (
-                            <a
-                              href={info.href}
-                              className="text-base font-bold text-white hover:text-orange-400 transition-colors break-all"
-                            >
-                              {info.value}
-                            </a>
-                          ) : (
-                            <p className="text-base font-bold text-white">
-                              {info.value}
-                            </p>
-                          )}
+                          <p className={`text-base font-bold break-all transition-colors ${info.href ? 'text-white group-hover:text-orange-400' : 'text-white'}`}>
+                            {info.value}
+                          </p>
                         </div>
+                      </>
+                    );
+
+                    const commonClasses = `p-6 rounded-2xl transition-all duration-300 backdrop-blur-xl flex items-start gap-4 bg-white/[0.02] border border-white/10 group-hover:border-orange-500/40 group-hover:bg-gradient-to-br group-hover:from-orange-500/[0.08] group-hover:to-white/[0.02] group-hover:shadow-lg group-hover:shadow-orange-500/5 group`;
+
+                    if (info.href) {
+                      return (
+                        <a
+                          key={idx}
+                          href={info.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${commonClasses} group cursor-pointer hover:-translate-y-1 block`}
+                        >
+                          {cardContent}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <div key={idx} className={commonClasses}>
+                        {cardContent}
                       </div>
                     );
                   })}
@@ -236,72 +343,126 @@ export default function ContactUsPage() {
                       </button>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form onSubmit={handleSubmit} noValidate className="space-y-5">
                       <div>
                         <input
                           type="text"
                           name="fullName"
-                          required
                           value={formData.fullName}
                           onChange={handleInputChange}
+                          onBlur={() => handleBlur('fullName')}
                           placeholder="Full Name"
-                          className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50 transition-all text-sm"
+                          className={`w-full px-5 py-4 rounded-xl bg-black/40 border text-white placeholder-neutral-500 focus:outline-none transition-all text-sm ${
+                            touched.fullName && errors.fullName
+                              ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                              : 'border-white/10 focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50'
+                          }`}
                         />
+                        {touched.fullName && errors.fullName && (
+                          <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-medium">
+                            <AlertCircle size={13} className="shrink-0" />
+                            <span>{errors.fullName}</span>
+                          </p>
+                        )}
                       </div>
 
                       <div>
                         <input
                           type="email"
                           name="email"
-                          required
                           value={formData.email}
                           onChange={handleInputChange}
-                          placeholder="Email"
-                          className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50 transition-all text-sm"
+                          onBlur={() => handleBlur('email')}
+                          placeholder="Email Address"
+                          className={`w-full px-5 py-4 rounded-xl bg-black/40 border text-white placeholder-neutral-500 focus:outline-none transition-all text-sm ${
+                            touched.email && errors.email
+                              ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                              : 'border-white/10 focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50'
+                          }`}
                         />
+                        {touched.email && errors.email && (
+                          <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-medium">
+                            <AlertCircle size={13} className="shrink-0" />
+                            <span>{errors.email}</span>
+                          </p>
+                        )}
                       </div>
 
                       <div>
                         <input
                           type="tel"
                           name="phone"
+                          maxLength={10}
                           value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="Phone Number"
-                          className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50 transition-all text-sm"
+                          onBlur={() => handleBlur('phone')}
+                          placeholder="Phone Number (10 digits)"
+                          className={`w-full px-5 py-4 rounded-xl bg-black/40 border text-white placeholder-neutral-500 focus:outline-none transition-all text-sm ${
+                            touched.phone && errors.phone
+                              ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                              : 'border-white/10 focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50'
+                          }`}
                         />
+                        {touched.phone && errors.phone && (
+                          <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-medium">
+                            <AlertCircle size={13} className="shrink-0" />
+                            <span>{errors.phone}</span>
+                          </p>
+                        )}
                       </div>
 
-                      <div className="relative">
-                        <select
-                          name="topic"
-                          value={formData.topic}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white focus:outline-none focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50 transition-all text-sm appearance-none cursor-pointer"
-                        >
-                          <option value="" disabled className="bg-[#141414] text-neutral-500">
-                            Topic
-                          </option>
-                          <option value="general" className="bg-[#141414] text-white">General Inquiry</option>
-                          <option value="migration" className="bg-[#141414] text-white">WordPress / Site Migration</option>
-                          <option value="support" className="bg-[#141414] text-white">Technical Support</option>
-                          <option value="enterprise" className="bg-[#141414] text-white">Custom Infrastructure / Enterprise</option>
-                          <option value="billing" className="bg-[#141414] text-white">Billing & Invoices</option>
-                        </select>
-                        <ChevronDown size={18} className="absolute right-5 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none" />
+                      <div>
+                        <div className="relative">
+                          <select
+                            name="topic"
+                            value={formData.topic}
+                            onChange={handleInputChange}
+                            onBlur={() => handleBlur('topic')}
+                            className={`w-full px-5 py-4 rounded-xl bg-black/40 border text-white focus:outline-none transition-all text-sm appearance-none cursor-pointer ${
+                              touched.topic && errors.topic
+                                ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                                : 'border-white/10 focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50'
+                            }`}
+                          >
+                            <option value="" disabled className="bg-[#141414] text-neutral-500">
+                              Topic
+                            </option>
+                            <option value="general" className="bg-[#141414] text-white">General Inquiry</option>
+                            <option value="migration" className="bg-[#141414] text-white">WordPress / Site Migration</option>
+                            <option value="support" className="bg-[#141414] text-white">Technical Support</option>
+                            <option value="enterprise" className="bg-[#141414] text-white">Custom Infrastructure / Enterprise</option>
+                            <option value="billing" className="bg-[#141414] text-white">Billing & Invoices</option>
+                          </select>
+                          <ChevronDown size={18} className="absolute right-5 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none" />
+                        </div>
+                        {touched.topic && errors.topic && (
+                          <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-medium">
+                            <AlertCircle size={13} className="shrink-0" />
+                            <span>{errors.topic}</span>
+                          </p>
+                        )}
                       </div>
 
                       <div>
                         <textarea
                           name="message"
-                          required
                           rows={4}
                           value={formData.message}
                           onChange={handleInputChange}
-                          placeholder="Message"
-                          className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50 transition-all text-sm resize-none"
+                          onBlur={() => handleBlur('message')}
+                          placeholder="Message (min. 10 characters)"
+                          className={`w-full px-5 py-4 rounded-xl bg-black/40 border text-white placeholder-neutral-500 focus:outline-none transition-all text-sm resize-none ${
+                            touched.message && errors.message
+                              ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                              : 'border-white/10 focus:border-orange-500/60 focus:ring-1 focus:ring-orange-500/50'
+                          }`}
                         />
+                        {touched.message && errors.message && (
+                          <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-medium">
+                            <AlertCircle size={13} className="shrink-0" />
+                            <span>{errors.message}</span>
+                          </p>
+                        )}
                       </div>
 
                       <button
@@ -407,18 +568,18 @@ export default function ContactUsPage() {
   // DESIGN 1: Figma Classic Layout
   // ==========================================
   return (
-    <div id="contact" className="min-h-screen bg-black text-[#F0E3DE]">
+    <div id="contact" className="min-h-screen text-[#F0E3DE]">
       
       {/* Hero Section */}
-      <section className="px-4 pt-16 pb-12 border-b border-gray-300/40">
-        <div className={`container mx-auto max-w-6xl text-center ${containerSpacing}`}>
+      <section className="px-4 pt-16 pb-12 border-b border-gray-300/40 bg-gray-900/10">
+        <div className={`container mx-auto max-w-6xl text-center lg:py-10 ${containerSpacing}`}>
           <h2 className="text-primary font-semibold tracking-wider text-xs md:text-sm uppercase mb-3 font-montserrat">
             Contact us
           </h2>
-          <h1 className="text-3xl md:text-5xl font-bold font-montserrat text-[#F0E3DE] mb-6">
+          <h1 className="text-3xl md:text-5xl font-bold font-inter text-[#F0E3DE] opacity-75 mb-6 lg:my-10">
             We Are Here When You Need Us
           </h1>
-          <p className="max-w-4xl mx-auto text-[#F0E3DE] font-nunito font-extralight text-sm md:text-base leading-relaxed opacity-80">
+          <p className="max-w-4xl mx-auto text-white font-nunito font-extralight text-sm md:text-base leading-relaxed opacity-80">
             Got a question about plans? Need help migrating your existing WordPress site? Or just want to know if SpinACloud is the right fit for you? Our India-based team is available 24×7 - reach us any way you prefer.
           </p>
         </div>
@@ -427,46 +588,52 @@ export default function ContactUsPage() {
       {/* Main 2-Column Section */}
       <section className="px-4 py-16 md:py-24 border-b border-gray-300/40">
         <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <h2 className="text-sm md:text-lg font-bold font-montserrat text-primary mb-6">
+                Get in Touch
+              </h2>
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
             {/* Left Column: Get in Touch Cards */}
             <div className="lg:col-span-5 space-y-6">
-              <h2 className="text-xl md:text-2xl font-bold font-montserrat text-[#F0E3DE] mb-6">
-                Get in Touch
-              </h2>
-
               <div className="space-y-4">
                 {contactInfo.map((info, idx) => {
                   const IconComp = info.icon;
-                  return (
-                    <div
-                      key={idx}
-                      className={`p-6 rounded-xl border transition-colors flex items-start gap-4 ${
-                        info.highlight
-                          ? 'border-primary bg-[#0d0d0d]'
-                          : 'border-gray-300/40 bg-[#0a0a0a] hover:border-gray-500'
-                      }`}
-                    >
-                      <div className="w-10 h-10 rounded-lg border border-primary/40 flex items-center justify-center text-primary shrink-0">
+                  
+                  const cardContent = (
+                    <>
+                      <div className="w-10 h-10 rounded-lg border border-primary/40 flex items-center justify-center text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-[#0d0d0d]">
                         <IconComp size={20} />
                       </div>
                       <div>
-                        <h3 className="text-sm font-semibold font-montserrat text-white mb-1">
+                        <h3 className="text-sm font-semibold font-roboto text-white mb-1">
                           {info.title}
                         </h3>
-                        {info.href ? (
-                          <a
-                            href={info.href}
-                            className="text-sm text-[#F0E3DE] font-nunito font-extralight opacity-80 hover:opacity-100 hover:text-primary transition-colors break-all"
-                          >
-                            {info.value}
-                          </a>
-                        ) : (
-                          <p className="text-sm text-[#F0E3DE] font-nunito font-extralight opacity-80">
-                            {info.value}
-                          </p>
-                        )}
+                        <p className={`text-sm text-[#F0E3DE] font-roboto font-extralight break-all transition-colors ${info.href ? 'opacity-80 group-hover:opacity-100 group-hover:text-primary' : 'opacity-80'}`}>
+                          {info.value}
+                        </p>
                       </div>
+                    </>
+                  );
+
+                  const commonClasses = `p-6 rounded-xl border transition-all flex items-start gap-4 border-gray-300/40 bg-[#0a0a0a] group-hover:border-primary group-hover:bg-[#0d0d0d] group`;
+
+                  if (info.href) {
+                    return (
+                      <a
+                        key={idx}
+                        href={info.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${commonClasses} group cursor-pointer hover:-translate-y-1 hover:shadow-lg block`}
+                      >
+                        {cardContent}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <div key={idx} className={commonClasses}>
+                      {cardContent}
                     </div>
                   );
                 })}
@@ -475,7 +642,7 @@ export default function ContactUsPage() {
 
             {/* Right Column: Send Us a Message Form */}
             <div className="lg:col-span-7">
-              <div className="border border-gray-300/40 rounded-xl p-8 md:p-10 bg-[#0d0d0d]">
+              <div className="rounded-xl p-8 md:p-10 bg-black border border-gray-800">
                 <h2 className="text-2xl font-bold font-montserrat text-[#F0E3DE] mb-2">
                   Send Us a Message
                 </h2>
@@ -498,40 +665,72 @@ export default function ContactUsPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-4">
                     <div>
                       <input
                         type="text"
                         name="fullName"
-                        required
                         value={formData.fullName}
                         onChange={handleInputChange}
+                        onBlur={() => handleBlur('fullName')}
                         placeholder="Full Name"
-                        className="w-full px-4 py-3.5 rounded-lg bg-[#141414] border border-gray-700/60 text-white placeholder-neutral-500 focus:outline-none focus:border-primary transition-colors text-sm font-nunito"
+                        className={`w-full px-4 py-3.5 rounded-lg bg-[#141414] border text-white placeholder-neutral-500 focus:outline-none transition-colors text-sm font-nunito ${
+                          touched.fullName && errors.fullName
+                            ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                            : 'border-gray-700/60 focus:border-primary'
+                        }`}
                       />
+                      {touched.fullName && errors.fullName && (
+                        <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-nunito font-medium">
+                          <AlertCircle size={13} className="shrink-0" />
+                          <span>{errors.fullName}</span>
+                        </p>
+                      )}
                     </div>
 
                     <div>
                       <input
                         type="email"
                         name="email"
-                        required
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="Email"
-                        className="w-full px-4 py-3.5 rounded-lg bg-[#141414] border border-gray-700/60 text-white placeholder-neutral-500 focus:outline-none focus:border-primary transition-colors text-sm font-nunito"
+                        onBlur={() => handleBlur('email')}
+                        placeholder="Email Address"
+                        className={`w-full px-4 py-3.5 rounded-lg bg-[#141414] border text-white placeholder-neutral-500 focus:outline-none transition-colors text-sm font-nunito ${
+                          touched.email && errors.email
+                            ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                            : 'border-gray-700/60 focus:border-primary'
+                        }`}
                       />
+                      {touched.email && errors.email && (
+                        <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-nunito font-medium">
+                          <AlertCircle size={13} className="shrink-0" />
+                          <span>{errors.email}</span>
+                        </p>
+                      )}
                     </div>
 
                     <div>
                       <input
                         type="tel"
                         name="phone"
+                        maxLength={10}
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="Phone Number"
-                        className="w-full px-4 py-3.5 rounded-lg bg-[#141414] border border-gray-700/60 text-white placeholder-neutral-500 focus:outline-none focus:border-primary transition-colors text-sm font-nunito"
+                        onBlur={() => handleBlur('phone')}
+                        placeholder="Phone Number (10 digits)"
+                        className={`w-full px-4 py-3.5 rounded-lg bg-[#141414] border text-white placeholder-neutral-500 focus:outline-none transition-colors text-sm font-nunito ${
+                          touched.phone && errors.phone
+                            ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                            : 'border-gray-700/60 focus:border-primary'
+                        }`}
                       />
+                      {touched.phone && errors.phone && (
+                        <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-nunito font-medium">
+                          <AlertCircle size={13} className="shrink-0" />
+                          <span>{errors.phone}</span>
+                        </p>
+                      )}
                     </div>
 
                     <div className="relative">
@@ -539,8 +738,12 @@ export default function ContactUsPage() {
                         name="topic"
                         value={formData.topic}
                         onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3.5 rounded-lg bg-[#141414] border border-gray-700/60 text-white focus:outline-none focus:border-primary transition-colors text-sm font-nunito appearance-none cursor-pointer"
+                        onBlur={() => handleBlur('topic')}
+                        className={`w-full px-4 py-3.5 rounded-lg bg-[#141414] border text-white focus:outline-none transition-colors text-sm font-nunito appearance-none cursor-pointer ${
+                          touched.topic && errors.topic
+                            ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                            : 'border-gray-700/60 focus:border-primary'
+                        }`}
                       >
                         <option value="" disabled className="bg-[#141414] text-neutral-500">
                           Topic
@@ -553,17 +756,33 @@ export default function ContactUsPage() {
                       </select>
                       <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none" />
                     </div>
+                    {touched.topic && errors.topic && (
+                      <p className="text-xs text-rose-400 mt-1 flex items-center gap-1.5 font-nunito font-medium">
+                        <AlertCircle size={13} className="shrink-0" />
+                        <span>{errors.topic}</span>
+                      </p>
+                    )}
 
                     <div>
                       <textarea
                         name="message"
-                        required
                         rows={4}
                         value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="Message"
-                        className="w-full px-4 py-3.5 rounded-lg bg-[#141414] border border-gray-700/60 text-white placeholder-neutral-500 focus:outline-none focus:border-primary transition-colors text-sm font-nunito resize-none"
+                        onBlur={() => handleBlur('message')}
+                        placeholder="Message (min. 10 characters)"
+                        className={`w-full px-4 py-3.5 rounded-lg bg-[#141414] border text-white placeholder-neutral-500 focus:outline-none transition-colors text-sm font-nunito resize-none ${
+                          touched.message && errors.message
+                            ? 'border-rose-500 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/50 bg-rose-500/[0.03]'
+                            : 'border-gray-700/60 focus:border-primary'
+                        }`}
                       />
+                      {touched.message && errors.message && (
+                        <p className="text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-nunito font-medium">
+                          <AlertCircle size={13} className="shrink-0" />
+                          <span>{errors.message}</span>
+                        </p>
+                      )}
                     </div>
 
                     <button

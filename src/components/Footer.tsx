@@ -125,7 +125,7 @@ export default function Footer() {
       <div className="container mx-auto max-w-6xl px-5">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
           
-          <div className="md:col-span-4 lg:col-span-5 space-y-6 border-r border-gray-300/40 border-dashed">
+          <div className="md:col-span-4 lg:col-span-5 space-y-6 border-gray-300/40 border-dashed md:border-r">
             <Link href="/" className="inline-block">
               <Image src={logo} alt="SpinACloud" width={200} height={40} className="mb-4" />
             </Link>
@@ -134,7 +134,7 @@ export default function Footer() {
             </p>
           </div>
           
-          <div className="md:col-span-4 lg:col-span-3 lg:border-r lg:border-gray-300/40 lg:border-dashed">
+          <div className="md:col-span-4 lg:col-span-3 border-gray-300/40 border-dashed lg:border-r">
             <h4 className="text-white font-bold mb-6">Services</h4>
             <ul className="space-y-4">
               <li>

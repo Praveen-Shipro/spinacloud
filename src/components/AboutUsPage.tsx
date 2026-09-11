@@ -2,8 +2,10 @@
 
 import { Cloud, Shield, Cpu, Activity, CheckSquare, Server, DollarSign, PhoneCall, LayoutTemplate } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useDesign } from '@/context/DesignContext';
 import MissionGlobe from './3d/MissionGlobe';
+import DetailedIndiaMap from './DetailedIndiaMap';
 
 export default function AboutUs() {
     const { designVariant } = useDesign();
@@ -68,7 +70,7 @@ export default function AboutUs() {
                         <h2 className="text-3xl md:text-5xl font-extrabold text-center text-white mb-16 tracking-tight">
                             Our Values
                         </h2>
-                        <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
+                        <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible  lg:-mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
                             {/* Transparency */}
                             <div className="w-[85vw] md:w-auto shrink-0 snap-start p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300">
                                 <h3 className="text-2xl font-bold text-white mb-3">Transparency</h3>
@@ -296,10 +298,9 @@ export default function AboutUs() {
         );
     }
 
-
     // Design 1 Figma Classic Variant
     return (
-        <div id="about" className="bg-[#0a0a0a]">
+        <div id="about">
             {/* Hero Section */}
             <section className="px-4 pt-12 md:pt-24">
                 <div className= {`${containerSpacing} container mx-auto max-w-6xl pb-12 border-b border-gray-300/40`}>
@@ -327,8 +328,11 @@ export default function AboutUs() {
                 <div className={`container mx-auto max-w-6xl py-12 md:py-24  border-b border-gray-300/40 ${containerSpacing}`}>
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div className="order-2 md:order-1 flex justify-start">
-                            {/* Map representation placeholder for Design 1 */}
-                            <MissionGlobe designVariant="design1" />
+                            {/* Interactive Mission Visual for Design 1 */}
+                            <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 bg-[#080808] flex items-center justify-center">
+                                <DetailedIndiaMap />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a090d]/80 via-transparent to-transparent pointer-events-none" />
+                            </div>
                         </div>
                         <div className="order-1 md:order-2">
                             <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm xl:text-lg">Our Mission</h2>
@@ -403,8 +407,8 @@ export default function AboutUs() {
                     </div>
 
                     {/* Mobile: horizontally scrollable value cards (below md) */}
-                    <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-2 px-2">
-                        <div className="snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
+                    <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -me-4 px-4">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
                             <h3 className="text-lg font-bold font-montserrat text-white">
                                 Transparency
                             </h3>
@@ -412,7 +416,7 @@ export default function AboutUs() {
                                 clear pricing, honest SLAs, no hidden bandwidth charges or egress fees
                             </p>
                         </div>
-                        <div className="snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
                             <h3 className="text-lg font-bold font-montserrat text-white">
                                 Reliability
                             </h3>
@@ -420,7 +424,7 @@ export default function AboutUs() {
                                 99.9% uptime backed by redundant Indian infrastructure
                             </p>
                         </div>
-                        <div className="snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
                             <h3 className="text-lg font-bold font-montserrat text-white">
                                 Simplicity
                             </h3>
@@ -428,7 +432,7 @@ export default function AboutUs() {
                                 enterprise features without enterprise complexity
                             </p>
                         </div>
-                        <div className="snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">
                             <h3 className="text-lg font-bold font-montserrat text-white">
                                 Proximity
                             </h3>
@@ -481,7 +485,7 @@ export default function AboutUs() {
 
                     <div className="mt-16 p-8 md:p-12 bg-white/8     rounded-2xl text-center">
                         <p className="text-[#F0E3DE] font-nunito font-extralight text-lg md:text-xl mb-4 opacity-80">
-                            For most Indian businesses looking to move to the cloud, the options were:
+                            None of these were built for India.
                         </p>
                         <h3 className="text-3xl md:text-4xl font-bold text-primary font-montserrat">
                             Spin A Cloud is.
@@ -498,8 +502,8 @@ export default function AboutUs() {
                     <h2 className="text-3xl md:text-4xl font-bold text-center text-[#F0E3DE] mb-16 font-montserrat tracking-widest uppercase opacity-90">
                         What Makes Us Different
                     </h2>
-                    <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-8  pb-4 md:pb-0">
-                        <div className=" md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
+                    <div data-lenis-prevent="true" className="flex md:grid md:grid-cols-2 gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible -me-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
                             <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center text-primary shrink-0">
                                 <Server size={24} />
                             </div>
@@ -509,7 +513,7 @@ export default function AboutUs() {
                             </p>
                         </div>
 
-                        <div className=" md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
                             <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center text-primary shrink-0">
                                 <DollarSign size={24} />
                             </div>
@@ -519,7 +523,7 @@ export default function AboutUs() {
                             </p>
                         </div>
 
-                        <div className=" md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
                             <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center text-primary shrink-0">
                                 <Cpu size={24} />
                             </div>
@@ -529,7 +533,7 @@ export default function AboutUs() {
                             </p>
                         </div>
 
-                        <div className=" md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
+                        <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start p-8 border border-gray-300/40 hover:bg-white/5 transition-colors flex flex-col gap-6 rounded-xl md:rounded-none">
                             <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center text-primary shrink-0">
                                 <PhoneCall size={24} />
                             </div>
@@ -552,20 +556,20 @@ export default function AboutUs() {
 
                     <div className="mb-12">
                         <h4 className="text-xl text-[#F0E3DE] mb-6 font-montserrat">Core infrastructure</h4>
-                        <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
-                            <div className="w-[85vw] md:w-auto shrink-0 snap-start bg-[#121212] p-8 border border-gray-300/20 rounded-xl md:rounded-none">
+                        <div data-lenis-prevent="true" className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible -me-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
+                            <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start bg-[#121212] p-8 border border-gray-300/20 rounded-xl md:rounded-none">
                                 <h5 className="text-lg font-bold text-[#F0E3DE] mb-4 font-montserrat">Virtual Machines</h5>
                                 <p className="text-[#F0E3DE] font-nunito font-extralight text-sm opacity-80 leading-relaxed">
-                                    Four categories covering every workload — Basic, General Purpose, CPU Optimised, and Memory Optimised — from a startup&apos;s first server to an enterprise&apos;s production database cluster.
+                                    Four categories covering every workload: Basic, General Purpose, CPU Optimised, and Memory Optimised. From a startup&apos;s first server to an enterprise&apos;s production database cluster.
                                 </p>
                             </div>
-                            <div className="w-[85vw] md:w-auto shrink-0 snap-start bg-[#121212] p-8 border border-gray-300/20 rounded-xl md:rounded-none">
+                            <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start bg-[#121212] p-8 border border-gray-300/20 rounded-xl md:rounded-none">
                                 <h5 className="text-lg font-bold text-[#F0E3DE] mb-4 font-montserrat">Volume Storage</h5>
                                 <p className="text-[#F0E3DE] font-nunito font-extralight text-sm opacity-80 leading-relaxed">
                                     Enterprise SSD NVMe (M.2) and NVMe SSD disk options, from 100 GB to 1,000 GB. High-performance persistent block storage that attaches directly to your VMs.
                                 </p>
                             </div>
-                            <div className="w-[85vw] md:w-auto shrink-0 snap-start bg-[#121212] p-8 border border-gray-300/20 rounded-xl md:rounded-none">
+                            <div className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start bg-[#121212] p-8 border border-gray-300/20 rounded-xl md:rounded-none">
                                 <h5 className="text-lg font-bold text-[#F0E3DE] mb-4 font-montserrat">IP Addresses</h5>
                                 <p className="text-[#F0E3DE] font-nunito font-extralight text-sm opacity-80 leading-relaxed">
                                     Static public IP allocation to make your servers reachable on the internet with a consistent address.
@@ -576,16 +580,16 @@ export default function AboutUs() {
 
                     <div>
                         <h4 className="text-xl text-[#F0E3DE] mb-6 font-montserrat mt-16">Optional add-ons</h4>
-                        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-x-12 md:gap-y-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
+                        <div data-lenis-prevent="true" className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-x-12 md:gap-y-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible -me-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
                             {[
-                                { num: '01', title: 'Virtual Router', desc: 'private networking between your VMs' },
-                                { num: '02', title: 'Load Balancer', desc: 'distribute traffic for high availability' },
-                                { num: '03', title: 'VM Snapshots', desc: 'point-in-time server recovery' },
-                                { num: '04', title: 'Volume Snapshots', desc: 'lightweight storage backups' },
-                                { num: '05', title: 'VM Backups', desc: 'standalone disaster-recovery copies' },
-                                { num: '06', title: 'Templates', desc: 'save and relaunch identical environments' }
+                                { num: '01', title: 'Virtual Router', desc: 'Private networking between your VMs' },
+                                { num: '02', title: 'Load Balancer', desc: 'Distribute traffic for high availability' },
+                                { num: '03', title: 'VM Snapshots', desc: 'Point-in-time server recovery' },
+                                { num: '04', title: 'Volume Snapshots', desc: 'Lightweight storage backups' },
+                                { num: '05', title: 'VM Backups', desc: 'Standalone disaster-recovery copies' },
+                                { num: '06', title: 'Templates', desc: 'Save and relaunch identical environments' }
                             ].map((addon, i) => (
-                                <div key={i} className="w-[85vw] md:w-auto shrink-0 snap-start flex gap-4 items-start border border-gray-300/20 md:border-0 md:border-b md:border-gray-300/20 p-6 md:p-0 md:pb-4 rounded-xl md:rounded-none bg-[#121212] md:bg-transparent">
+                                <div key={i} className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start flex gap-4 items-start border border-gray-300/20 md:border-0 md:border-b md:border-gray-300/20 p-6 md:p-0 md:pb-4 rounded-xl md:rounded-none bg-[#121212] md:bg-transparent">
                                     <span className="text-primary font-mono text-xl">{addon.num}</span>
                                     <div>
                                         <h5 className="text-[#F0E3DE] font-semibold font-montserrat">{addon.title}</h5>
@@ -601,7 +605,7 @@ export default function AboutUs() {
             {/* Who We Serve Section */}
             <section className="px-4 ">
                 <div className={`container mx-auto max-w-6xl  py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
-                    <div className="mb-12 max-w-2xl">
+                    <div className="mb-12 max-w-4xl">
                         <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm">Who We Serve</h2>
                         <h3 className="text-3xl md:text-4xl font-bold text-[#F0E3DE] font-montserrat leading-tight opacity-90">
                             SpinACloud is built for Indian businesses across the full spectrum of technical maturity and scale:
@@ -632,7 +636,7 @@ export default function AboutUs() {
             {/* CTA Section */}
             <section className="px-4 py-16 text-center">
                 <div className="container mx-auto flex flex-col sm:flex-row justify-center items-center gap-6">
-                    <Link href="#get-started" className="px-8 py-4 bg-primary text-white font-bold font-montserrat rounded-full hover:bg-orange-600 transition-colors w-full sm:w-auto">
+                    <Link href="#get-started" className="px-8 py-4 bg-linear-to-r from-[#FF6600]/50 to-[#FF9752] text-white font-bold font-montserrat rounded-full hover:bg-orange-600 transition-colors w-full sm:w-auto">
                         Start Hosting on SpinACloud
                     </Link>
                     <Link href="#plans" className="px-8 py-4 bg-white text-black font-bold font-montserrat rounded-full hover:bg-gray-200 transition-colors w-full sm:w-auto">

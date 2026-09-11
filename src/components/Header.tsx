@@ -13,9 +13,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full mx-auto px-4 backdrop-blur-md border-b border-dashed">
-      <div className="mx-auto max-w-6xl border-l border-dashed">
-        <div className="border-r border-dashed">
-          <div className="container mx-auto lg:px-4 flex items-center justify-between h-24 gap-4">
+      <div className="mx-auto max-w-6xl md:border-x border-dashed">
+        <div className="container mx-auto lg:px-4 flex items-center justify-between h-24 gap-4">
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <Image src={logo} alt="logo" width={200} height={25} className="w-auto h-6 md:h-7" />
             </Link>
@@ -115,7 +114,6 @@ export default function Header() {
             </div>
           )}
         </div>
-      </div>
     </header>
   );
 }

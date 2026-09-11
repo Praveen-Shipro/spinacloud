@@ -25,6 +25,8 @@ import { useDesign } from '@/context/DesignContext';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import DynamicAmbientGlow from '@/components/DynamicAmbientGlow';
+import { div } from 'three/tsl';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -62,35 +64,51 @@ function HorizontalProvisionScroll({
         return Math.max(0, track.scrollWidth - viewport.clientWidth);
       };
 
-      const tween = gsap.to(track, {
-        x: () => -getScrollAmount(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          pin: true,
-          scrub: 0.8,
-          start: 'top top+=96',
-          end: () => `+=${Math.max(window.innerHeight * 1.5, getScrollAmount() + 400)}`,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-          onUpdate: (self) => {
-            setProgress(self.progress);
+      const tween = gsap.fromTo(
+        track,
+        { x: 0 },
+        {
+          x: () => -getScrollAmount(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            pin: true,
+            scrub: 0.8,
+            start: 'top top+=96',
+            end: () => `+=${Math.max(window.innerHeight * 1.5, getScrollAmount() + 400)}`,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              setProgress(self.progress);
+            },
           },
-        },
-      });
+        }
+      );
 
       return () => {
         tween.kill();
       };
     },
-    { scope: sectionRef, dependencies: [variant, items] }
+    { scope: sectionRef, dependencies: [variant] }
   );
+
+  React.useEffect(() => {
+    // Force refresh of all ScrollTriggers after layout shifts
+    // when items change (tab switch)
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [items]);
 
   if (variant === 'design2') {
     return (
       <section
         ref={sectionRef}
-        className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-white/10 z-10"
+        className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-white/10 z-10 bg-slate-800"
       >
         <div className={`container mx-auto max-w-6xl w-full px-4 ${containerSpacing}`}>
           {/* Header with scroll progress indicator */}
@@ -127,7 +145,7 @@ function HorizontalProvisionScroll({
                 return (
                   <div
                     key={idx}
-                    className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 group flex flex-col justify-between"
+                    className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 p-8 rounded-2xl bg-transparent border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 group flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-6">
@@ -163,7 +181,7 @@ function HorizontalProvisionScroll({
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-gray-300/40 px-4"
+      className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-gray-300/40 px-4 bg-[#222222]"
     >
       <div className={`container mx-auto max-w-6xl w-full ${containerSpacing}`}>
         {/* Header with progress */}
@@ -197,7 +215,7 @@ function HorizontalProvisionScroll({
               return (
                 <div
                   key={idx}
-                  className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 border border-gray-300/40 p-8 rounded-xl bg-[#0e0e0e] flex flex-col justify-between hover:border-primary/60 transition-colors"
+                  className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 border border-gray-300/40 p-8 rounded-xl bg-transparent flex flex-col justify-between hover:border-primary/60 transition-colors"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-6">
@@ -234,7 +252,7 @@ export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState<'service1' | 'service2'>('service1');
   const containerSpacing = 'md:px-8 lg:px-10 xl:px-16';
 
-  const provisionFeatures = [
+  const provisionFeatures = activeTab === 'service1' ? ([
     {
       num: '01',
       title: 'Virtual Machines',
@@ -259,7 +277,64 @@ export default function ServicesPage() {
       desc: 'Virtual Router for private inter-VM networking, and Load Balancer for distributing traffic across multiple servers to keep high-traffic applications online and responsive.',
       icon: Network,
     },
-  ];
+        {
+      num: '05',
+      title: 'Data Protection',
+      desc: 'VM Snapshots, Volume Snapshots, VM Backups, and reusable Templates so your data is always recoverable and your deployments are always repeatable.',
+      icon: HardDrive,
+    },
+  ]):(
+    [
+    {
+      num: '01',
+      title: 'Automated Setup & Provisioning',
+      desc: 'A single command provisions a fully hardened, production-ready WordPress environment on your SpinACloud VM. OpenLiteSpeed web server, MariaDB, PHP, Redis caching, SSL, firewall configuration - all set up, all secured, automatically.',
+      icon: Server,
+    },
+    {
+      num: '02',
+      title: 'Site Migration',
+      desc: 'Moving an existing WordPress site to SpinACloud? WP Server Setup handles the migration - files, database, configuration - cleanly and without downtime.',
+      icon: HardDrive,
+    },
+    {
+      num: '03',
+      title: 'Automated Backups',
+      desc: 'A three-tier backup system runs automatically: cloud object storage (Cloudflare R2 or AWS S3), Google Drive, and a local server vault. Your WordPress data is backed up across three independent locations, so a single point of failure cannot cost you your site.',
+      icon: Globe,
+    },
+    {
+      num: '04',
+      title: 'Uptime & Performance Monitoring',
+      desc: 'A site health monitor runs every minute, checking your WordPress installation from the origin (bypassing CDN cache) and automatically detecting and classifying failures — 503 errors, database connection failures, PHP crashes, and broken admin assets. If a site goes down, it attempts auto-remediation before alerting you.',
+      icon: Network,
+    },
+    {
+      num: '05',
+      title: 'Security & Malware Scanning',
+      desc: 'An AI-assisted heuristic malware scanner audits your WordPress files automatically, quarantines suspicious files safely, and alerts you with forensic detail. Built on a dual-layer system combining signature-based detection with Google Gemini AI analysis.',
+      icon: HardDrive,
+    },
+    {
+      num: '06',
+      title: 'Cloning & Templates',
+      desc: 'Clone any WordPress site into a new environment in minutes. Save configured setups as reusable templates for consistent multi-site or multi-client deployments.',
+      icon: HardDrive,
+    },
+    {
+      num: '07',
+      title: 'Multi-site Support',
+      desc: ' WP Server Setup is additive-aware. Add a second or third WordPress site to the same server and it detects existing infrastructure automatically, isolating each site in its own environment without touching whats already running.',
+      icon: HardDrive,
+    },
+    {
+      num: '08',
+      title: 'Cloudflare Integration',
+      desc: 'Native Cloudflare Zero Trust support, with both full DNS automation and partial CNAME options for businesses that manage DNS through other providers',
+      icon: HardDrive,
+    },
+  ]
+  ) 
 
   const planInclusions = [
     {
@@ -309,6 +384,7 @@ export default function ServicesPage() {
   if (designVariant === 'design2') {
     return (
       <div id="services" className="relative overflow-hidden bg-linear-to-b from-[#0a090d] via-[#10131a] to-[#0a090d]">
+        <DynamicAmbientGlow />
         {/* Ambient Glows */}
         <div className="absolute top-0 right-1/4 w-[700px] h-[700px] bg-orange-500/[0.07] rounded-full blur-[160px] pointer-events-none" />
         <div className="absolute top-1/3 left-0 w-[600px] h-[600px] bg-blue-500/[0.04] rounded-full blur-[160px] pointer-events-none" />
@@ -497,21 +573,25 @@ export default function ServicesPage() {
         {/* Who This Service Is For */}
         <section className="px-4 py-20 border-b border-white/10 relative z-10">
           <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
-            <div className="rounded-3xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 p-8 md:p-12 backdrop-blur-xl">
+            <div className="rounded-3xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 p-4 md:p-12 backdrop-blur-xl">
               <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
                 Who this service is for:
               </h2>
               <p className="text-neutral-300 text-base md:text-lg leading-relaxed max-w-4xl mb-8">
                 Startups and growing businesses that need reliable infrastructure without the complexity or cost of AWS or Azure. Developers and DevOps teams who want full root access, CLI deployment, and YAML configuration. Agencies managing multiple client environments. E-commerce businesses needing traffic spike resilience. SaaS companies requiring elastic compute. Enterprises that need high-availability Indian cloud hosting for compliance and performance.
               </p>
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {targetAudiences.map((aud, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-white/[0.02] border border-white/5 flex items-start gap-3">
-                    <CheckSquare size={18} className="text-primary mt-0.5 shrink-0" />
-                    <div>
-                      <h4 className="text-sm font-semibold text-white mb-1">{aud.name}</h4>
-                      <p className="text-xs text-neutral-400">{aud.desc}</p>
-                    </div>
+              <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                {Array.from({ length: 3 }).map((_, colIndex) => (
+                  <div key={colIndex} className="w-[85%] shrink-0 sm:w-[320px] md:w-auto snap-start md:snap-align-none flex flex-col gap-4">
+                    {targetAudiences.slice(colIndex * 2, colIndex * 2 + 2).map((aud, i) => (
+                      <div key={i} className="p-4 rounded-xl bg-white/[0.02] border border-white/5 flex items-start gap-3 h-full">
+                        <CheckSquare size={18} className="text-primary mt-0.5 shrink-0" />
+                        <div>
+                          <h4 className="text-sm font-semibold text-white mb-1">{aud.name}</h4>
+                          <p className="text-xs text-neutral-400">{aud.desc}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
@@ -666,14 +746,19 @@ export default function ServicesPage() {
   // DESIGN 1: Figma Classic Layout (Original)
   // ==========================================
   return (
-    <div id="services" className="bg-[#0a0a0a]">
+    <div id="services" className="relative">
+      <DynamicAmbientGlow />
       {/* Hero Section */}
-      <section className="px-4 pt-12 md:pt-24">
-        <div className={`${containerSpacing} container mx-auto max-w-6xl pb-12 border-b border-gray-300/40`}>
+      <section className="px-4 pt-12 md:pt-24 relative overflow-hidden bg-amber-900/10">
+        {/* Ambient Glows */}
+        {/* <div className="absolute top-0 -left-16 w-[600px] h-[600px]  rounded-full blur-[120px] pointer-events-none animate-pulse duration-1000" /> */}
+        <div className="absolute bottom-0 -right-16 w-[600px] h-[600px] bg-[#FF6600]/[0.15] rounded-full blur-[120px] pointer-events-none" />
+
+        <div className={`${containerSpacing} container mx-auto max-w-6xl pb-12 border-b border-gray-300/40 relative z-10`}>
           <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-lg">
             Services
           </h2>
-          <h1 className="text-3xl md:text-5xl lg:text-50 font-bold text-[#F0E3DE] mb-8 font-inter leading-tight max-w-4xl opacity-75">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#F0E3DE] mb-8 font-inter leading-tight max-w-4xl opacity-75">
             Everything Your Application Needs.<br />
             Under One Indian Cloud.
           </h1>
@@ -707,7 +792,7 @@ export default function ServicesPage() {
                 }`}
             >
               <Cloud size={16} />
-              <span>Service-1</span>
+              <span className='font-montserrat'>Service-1</span>
             </button>
 
             <button
@@ -772,7 +857,7 @@ export default function ServicesPage() {
                   Service 2: Managed WordPress Hosting Powered by WP Server Setup
                 </h3>
                 <h2 className="text-2xl md:text-4xl font-bold text-[#F0E3DE] font-montserrat opacity-90 leading-tight">
-                  The WordPress environment that manages itself.
+                  WordPress hosting that manages itself.
                 </h2>
                 <div className="space-y-4">
                   <p className="text-[#F0E3DE] font-nunito font-extralight text-base md:text-lg leading-relaxed">
@@ -814,12 +899,14 @@ export default function ServicesPage() {
         items={provisionFeatures}
         variant="design1"
         containerSpacing={containerSpacing}
+        
       />
 
       {/* Who this service is for */}
       <section className="px-4">
         <div className={`container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
-          <div className="border border-gray-300/40 rounded-xl p-8 md:p-12 bg-[#0d0d0d]">
+          {activeTab === 'service1' ? (
+            <div className="border border-gray-300/40 rounded-xl p-4 md:p-12 bg-[#0d0d0d]">
             <h2 className="text-xl md:text-2xl font-bold font-montserrat text-[#FFFFFF] mb-6">
               Who this service is for:
             </h2>
@@ -830,69 +917,36 @@ export default function ServicesPage() {
               SaaS companies requiring elastic compute. Enterprises that need high-availability Indian cloud hosting for compliance and performance.
             </p>
 
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {targetAudiences.map((aud, i) => (
-                <div key={i} className="p-4 rounded-lg bg-black/60 border border-gray-800/80 flex items-start gap-3">
-                  <CheckSquare size={18} className="text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <h4 className="text-sm font-semibold font-montserrat text-white mb-1">{aud.name}</h4>
-                    <p className="text-xs text-[#F0E3DE] font-nunito font-extralight opacity-75">{aud.desc}</p>
-                  </div>
+            <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              {Array.from({ length: 3 }).map((_, colIndex) => (
+                <div key={colIndex} className="w-[85%] shrink-0 sm:w-[320px] md:w-auto snap-start md:snap-align-none flex flex-col gap-4">
+                  {targetAudiences.slice(colIndex * 2, colIndex * 2 + 2).map((aud, i) => (
+                    <div key={i} className="p-4 rounded-lg bg-black/60 border border-gray-800/80 flex items-start gap-3 h-full">
+                      <CheckSquare size={18} className="text-primary mt-0.5 shrink-0" />
+                      <div>
+                        <h4 className="text-sm font-semibold font-montserrat text-white mb-1">{aud.name}</h4>
+                        <p className="text-xs text-[#F0E3DE] font-nunito font-extralight opacity-75">{aud.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
+          </div>) : (
+              <div className='flex flex-col md:flex-row justify-around gap-3 md:gap-4 lg:gap-8'>
+                  <div className='flex flex-col gap-3 p-5 rounded-2xl w-full md:w-1/2 bg-[#D85803]'>
+                      <h2>WP Server Setup is available  free of charge</h2>
+                      <p> to all SpinACloud customers who choose to host WordPress on our infrastructure. It is not available as a standalone product - it is built for SpinACloud servers and works best on our NVMe-backed, OpenLiteSpeed-optimised VM stack.</p>
+                  </div>
 
-      {/* What's included on every plan */}
-      <section className="px-4">
-        <div className={`container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
-          <h2 className="text-2xl md:text-3xl font-bold font-montserrat text-[#F0E3DE] mb-12 opacity-90">
-            What&apos;s included on every plan:
-          </h2>
-
-          {/* Desktop 3-Column Grid */}
-          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {planInclusions.map((item, idx) => {
-              const IconComponent = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-6 rounded-xl border border-gray-300/40 bg-[#0e0e0e] flex flex-col justify-between"
-                >
-                  <div className="w-12 h-12 rounded-lg border border-primary flex items-center justify-center text-primary mb-6 shrink-0">
-                    <IconComponent size={22} />
+                  <div className='flex flex-col gap-3 p-5 rounded-2xl w-full md:w-1/2 bg-[#D85803]'>
+                      <h2>Who this service is for:</h2>
+                      <p>Business owners who want WordPress to just work - without managing servers. Agencies and freelancers hosting multiple client WordPress sites who need automation, isolation, and reliability. 
+                        Developers running high-traffic or multi-tenant WordPress installations who want a hardened, production-grade setup without building it from scratch. Enterprises running WordPress as their 
+                        CMS who need uptime monitoring, automated backups, and security scanning built in.</p>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold font-montserrat text-white mb-2">{item.title}</h3>
-                    <p className="text-sm text-[#F0E3DE] font-nunito font-extralight opacity-80 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Mobile Horizontally Scrollable Cards */}
-          <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-2 px-2">
-            {planInclusions.map((item, idx) => {
-              const IconComponent = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="snap-start shrink-0 w-[280px] p-6 rounded-xl border border-gray-300/40 bg-[#0e0e0e] flex flex-col justify-between"
-                >
-                  <div className="w-12 h-12 rounded-lg border border-primary flex items-center justify-center text-primary mb-6 shrink-0">
-                    <IconComponent size={22} />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold font-montserrat text-white mb-2">{item.title}</h3>
-                    <p className="text-xs text-[#F0E3DE] font-nunito font-extralight opacity-80 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+              </div>
+          )}
         </div>
       </section>
 
@@ -935,10 +989,10 @@ export default function ServicesPage() {
       </section>
 
       {/* Bottom CTA Banner & Follow Us */}
-      <section className="px-4 py-16">
+      <section className="px-4 pt-16">
         <div className={`container mx-auto max-w-6xl space-y-12 ${containerSpacing}`}>
           {/* Orange Gradient CTA Banner */}
-          <div className="rounded-3xl bg-gradient-to-r from-orange-600 via-[#d85803] to-amber-600 p-8 md:p-12 text-center text-white shadow-xl shadow-orange-500/10">
+          <div className="rounded-3xl bg-gradient-to-r from-[#FF6600]/50 to-[#FF9752] p-8 md:p-12 text-center text-white shadow-xl shadow-orange-500/10">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-montserrat mb-4 tracking-tight">
               Not Sure Which Service You Need?
             </h2>
@@ -958,28 +1012,6 @@ export default function ServicesPage() {
               >
                 View Plans
               </Link>
-            </div>
-          </div>
-
-          {/* Follow Spin A Cloud */}
-          <div className="p-8 rounded-xl border border-gray-300/40 text-center max-w-xl mx-auto bg-[#0d0d0d]">
-            <h3 className="text-lg font-bold font-montserrat text-white mb-2">Follow Spin A Cloud</h3>
-            <p className="text-[#F0E3DE] font-nunito font-extralight text-sm opacity-80 mb-6">
-              Stay Updated With Hosting Tips, Downtime Alerts, And Product News:
-            </p>
-            <div className="flex justify-center gap-4">
-              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-neutral-300 hover:text-white hover:border-primary hover:bg-primary/10 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-              </a>
-              <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-neutral-300 hover:text-white hover:border-primary hover:bg-primary/10 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
-              </a>
-              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-neutral-300 hover:text-white hover:border-primary hover:bg-primary/10 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" /></svg>
-              </a>
-              <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-neutral-300 hover:text-white hover:border-primary hover:bg-primary/10 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-              </a>
             </div>
           </div>
         </div>
