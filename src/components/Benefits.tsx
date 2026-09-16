@@ -12,7 +12,7 @@ export default function Benefits() {
         {/* Subtle glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-orange-500/[0.09] rounded-full blur-[160px] pointer-events-none" />
 
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-4">
               Local Excellence
@@ -77,7 +77,7 @@ export default function Benefits() {
   // Design 1 Figma Classic Variant
   return (
     <section className=" px-4 relative">
-      <div className="container mx-auto max-w-6xl border-b border-gray-300/40 py-12 md:py-24">
+      <div className="container mx-auto max-w-6xl 2xl:max-w-7xl border-b border-gray-300/40 py-12 md:py-24">
         <h2 className="text-4xl font-bold text-center font-montserrat mb-16 text-[#F0E3DE] opacity-75">
           Why Spin A Cloud
         </h2>

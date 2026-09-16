@@ -5,6 +5,8 @@ import dataCentreIcon from '@/assets/images/data-centre-icon.svg';
 import uptimeIcon from '@/assets/images/uptime-icon.svg';
 import billingIcon from '@/assets/images/billing-icon.svg';
 import customerSupportIcon from '@/assets/images/customer-support.svg';
+import heroImg from '@/assets/images/Hero_img2.png';
+import heroBg from '@/assets/images/Hero_bg.png';
 import paymentIcon from '@/assets/images/payment-icon.svg';
 import { useDesign } from '@/context/DesignContext';
 import HeroCloudScene from '@/components/3d/HeroCloudScene';
@@ -20,7 +22,7 @@ export default function Hero() {
         {/* Subtle warm ambient radial glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-orange-500/[0.12] blur-[160px] pointer-events-none rounded-full" />
         
-        <div className="container mx-auto px-4 relative z-10 max-w-6xl">
+        <div className="container mx-auto px-4 relative z-10 max-w-6xl 2xl:max-w-7xl">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 py-12">
             
             {/* Left Text Content */}
@@ -63,7 +65,7 @@ export default function Hero() {
 
         {/* Design 2 Enhanced Glassmorphic Ribbon */}
         <div className="w-full border-y border-white/10 bg-white/[0.02] backdrop-blur-xl relative z-10 py-8">
-          <div className="container mx-auto px-4 max-w-6xl">
+          <div className="container mx-auto px-4 max-w-6xl 2xl:max-w-7xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
               <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-orange-500/30 hover:bg-white/[0.05] transition-all duration-300 group shadow-lg shadow-black/20">
                 <div className="p-2.5 rounded-xl bg-orange-500/10 group-hover:scale-105 transition-transform">
@@ -108,29 +110,20 @@ export default function Hero() {
 
   // Design 1 Figma Classic Variant (Exact Original Layout)
   return (
-    <section className="relative lg:pb-12 overflow-hidden">
-      {/* Background Video */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline 
-        className="absolute inset-0 object-cover max-w-6xl mx-auto opacity-80 pointer-events-none mix-blend-screen px-4 h-3/4"
-      >
-        <source src="/assets/videos/hero.mp4" type="video/mp4" />
-      </video>
-
+    <section className="relative lg:pb-12 overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${heroBg.src})` }} >
+      {/* Background Image */}
+      <Image className="absolute right-0 pointer-events-none " src={heroImg} alt="" />
       {/* Background patterns */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-orange-500/10 via-[#0a0a0a]/60 to-[#0a0a0a] opacity-90 pointer-events-none" />
-      <div className="container mx-auto px-4 relative z-10 max-w-6xl" >
+      <div className="container mx-auto px-4 relative z-10 max-w-6xl 2xl:max-w-7xl" >
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 lg:mb-16">
-          <div className="flex-1 space-y-8 text-center lg:text-left py-12 md:py-24 lg:pt-36 md:ps-14">
-            <h1 className="font-montserrat text-5xl lg:text-50 font-bold tracking-tight text-[# F0E3DE] opacity-75 uppercase leading-[1.1]">
-              Spin the<br />
-              Future of<br />
-              <span className="">Cloud Reality</span>
+          <div className="flex-1 space-y-8 text-center lg:text-left py-12 md:py-24 lg:pt-36 ">
+            <h2 className='text-sm lg:text-xl font-montserrat font-bold tracking-tight text-[#F0E3DE] opacity-75 uppercase mb-0'>Only Indian</h2>
+            <h1 className="font-montserrat text-5xl lg:text-50 font-bold tracking-tight text-[#F0E3DE] opacity-75 uppercase leading-[1.1] mb-0">
+              cloud hosting
             </h1>
-            <button className="mx-auto lg:mx-0 flex items-center justify-center gap-2 px-6 py-2 bg-transparent text-white border-2 border-primary rounded-full font-medium hover:bg-white/5 transition-all text-sm">
+            <h2 className='text-xl lg:text-3xl font-montserrat font-bold tracking-tight text-[#F0E3DE] opacity-75 uppercase '>With Unlimited bandwidth</h2>
+            <button className="mx-auto lg:mx-0 flex items-center justify-center gap-2 px-6 py-2 bg-primary text-white border-2 border-primary rounded-full font-medium transition-all text-sm hover:cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 transition-all active:scale-95">
               Get Started
             </button>
           </div>
@@ -139,7 +132,7 @@ export default function Hero() {
 
       {/* Features Ribbon */}
       <div className="w-full relative z-10 px-4">
-        <div className="container mx-auto px-4 max-w-6xl border-y border-gray-300/40 py-6">
+        <div className="container mx-auto px-4 max-w-6xl 2xl:max-w-7xl lg:bg-[#303030]/80 lg:backdrop-blur-sm lg:rounded-4xl py-6">
           {/* Desktop: original grid (lg and above) */}
           <div className="hidden lg:grid lg:grid-cols-5 gap-6 md:ps-10">
             <div className="flex items-center gap-3 lg:border-r pr-4">

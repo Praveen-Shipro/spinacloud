@@ -44,7 +44,7 @@ export default function Features() {
   if (designVariant === 'design2') {
     return (
       <section className="py-28 px-4 border-b border-white/10 relative overflow-hidden bg-gradient-to-b from-[#0a090d] via-[#10131a] to-[#0a090d]">
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-4">
               Supported Workloads
@@ -81,7 +81,7 @@ export default function Features() {
 
   // Design 1 Figma Classic Variant
   return (
-    <section className="max-w-6xl mx-auto px-4 pt-5 md:pt-12">
+    <section className="max-w-6xl 2xl:max-w-7xl mx-auto px-4 pt-5 md:pt-12">
       <div className="px-1 md:px-8 border-y border-gray-300/40 lg:border-0 py-12 lg:py-0">
       <div className="container mx-auto ">
         <h2 className="text-3xl md:text-4xl font-bold text-center font-montserrat mb-16 text-[#F0E3DE] opacity-75 ">

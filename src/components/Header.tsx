@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Layers } from 'lucide-react';
 import logo from '../assets/images/logo-1.png';
 import { useDesign } from '@/context/DesignContext';
@@ -10,10 +11,13 @@ import { useDesign } from '@/context/DesignContext';
 export default function Header() {
   const { designVariant, setDesignVariant } = useDesign();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomepage = pathname === '/';
+
 
   return (
-    <header className="sticky top-0 z-50 w-full mx-auto px-4 backdrop-blur-md border-b border-dashed">
-      <div className="mx-auto max-w-6xl md:border-x border-dashed">
+    <header className={`sticky top-0 z-50 w-full mx-auto px-4 backdrop-blur-md ${isHomepage ? '' : 'border-dashed'}`}>
+      <div className={`mx-auto max-w-6xl 2xl:max-w-7xl ${isHomepage ? '' : 'md:border-x border-dashed'}`}>
         <div className="container mx-auto lg:px-4 flex items-center justify-between h-24 gap-4">
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <Image src={logo} alt="logo" width={200} height={25} className="w-auto h-6 md:h-7" />
@@ -57,8 +61,8 @@ export default function Header() {
                 </button>
               </div>
 
-              <button className="hidden sm:flex px-4 py-2 text-xs font-semibold bg-transparent border-2 border-primary text-white rounded-full hover:bg-primary/10 hover:shadow-lg hover:shadow-orange-500/20 transition-all active:scale-95">
-                Get Started
+              <button className="hidden sm:flex px-4 py-2 text-xs font-semibold bg-[#D85803] border-2 border-primary text-white rounded-full hover:cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 transition-all active:scale-95">
+                Calculator
               </button>
 
               <button 

@@ -71,7 +71,7 @@ export default function Pricing() {
         {/* Subtle dynamic glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-orange-500/[0.08] rounded-full blur-[180px] pointer-events-none" />
 
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10">
           <div className="text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-4">
               Simple & Transparent Pricing
@@ -204,7 +204,7 @@ export default function Pricing() {
   // Design 1 Figma Classic Variant
   return (
     <section className=" px-4 relative">
-      <div className="container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40">
+      <div className="container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40">
         <div className="text-center mb-16">
           <h2 className="text-primary font-semibold tracking-wider text-sm uppercase mb-4">Built for everyone</h2>
           <h3 className="text-xl md:text-2xl font-bold font-montserrat text-[#F0E3DE] opacity-75 mx-auto">

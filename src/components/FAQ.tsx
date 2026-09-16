@@ -86,7 +86,7 @@ export default function FAQ() {
   // Design 1 Figma Classic Variant
   return (
     <section className=" px-4 relative">
-      <div className='container mx-auto max-w-6xl border-b border-gray-300/40 py-24'>
+      <div className='container mx-auto max-w-6xl 2xl:max-w-7xl border-b border-gray-300/40 py-24'>
       <div className="container mx-auto max-w-3xl">
         <div className="text-center mb-16">
           <h2 className="text-primary font-semibold tracking-wider text-sm uppercase mb-4">Faq Section</h2>

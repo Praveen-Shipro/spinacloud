@@ -19,7 +19,7 @@ export default function AboutUs() {
 
                 {/* Hero Section */}
                 <section className="px-4 pt-20 pb-16 border-b border-white/10 relative z-10">
-                    <div className="container mx-auto max-w-6xl">
+                    <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <span className="text-lg font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-6">
                             About us
                         </span>
@@ -30,7 +30,7 @@ export default function AboutUs() {
                     </div>
                 </section>
                 <section className="px-4 pt-20 pb-16 border-b border-white/10 relative z-10">
-                    <div className="container mx-auto max-w-6xl">
+                    <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <p className="text-neutral-300 text-lg md:text-xl max-w-3xl leading-relaxed mb-6">
                             Indian businesses have been paying for overseas cloud infrastructure for too long. Servers in other countries. Support in time zones that don&apos;t match yours. Bills that require a spreadsheet to understand. Pricing designed for Fortune 500 companies - not Indian startups, agencies, and enterprises.
                         </p>
@@ -43,7 +43,7 @@ export default function AboutUs() {
 
                 {/* Mission Section */}
                 <section className="px-4 py-20 border-b border-white/10 relative z-10">
-                    <div className="container mx-auto max-w-6xl">
+                    <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <div className="grid md:grid-cols-2 gap-16 items-center">
                             <div className="order-2 md:order-1 flex justify-center relative">
                                 <div className="absolute inset-0 bg-orange-500/10 rounded-full blur-[100px]" />
@@ -66,7 +66,7 @@ export default function AboutUs() {
 
                 {/* Values Section */}
                 <section className="px-4 py-20 border-b border-white/10 relative z-10">
-                    <div className="container mx-auto max-w-6xl">
+                    <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <h2 className="text-3xl md:text-5xl font-extrabold text-center text-white mb-16 tracking-tight">
                             Our Values
                         </h2>
@@ -132,7 +132,7 @@ export default function AboutUs() {
 
                 {/* What Makes Us Different */}
                 <section className="px-4 py-20 border-b border-white/10 relative z-10">
-                    <div className="container mx-auto max-w-6xl">
+                    <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <h2 className="text-3xl md:text-5xl font-extrabold text-center text-white mb-16 tracking-tight">What Makes Us Different</h2>
                         <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:overflow-visible -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
                             <div className="w-[85vw] md:w-auto shrink-0 snap-start p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 group">
@@ -172,7 +172,7 @@ export default function AboutUs() {
 
                 {/* What SpinACloud Provides Section */}
                 <section className="px-4 py-20 border-b border-white/10 relative z-10">
-                    <div className="container mx-auto max-w-6xl">
+                    <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-4">
                             What SpinACloud Provides
                         </span>
@@ -250,7 +250,7 @@ export default function AboutUs() {
 
                 {/* Who We Serve Section */}
                 <section className="px-4 py-20 border-b border-white/10 relative z-10">
-                    <div className="container mx-auto max-w-6xl">
+                    <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <div className="mb-16 max-w-3xl">
                             <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-4">
                                 Who We Serve
@@ -303,7 +303,7 @@ export default function AboutUs() {
         <div id="about">
             {/* Hero Section */}
             <section className="px-4 pt-12 md:pt-24">
-                <div className= {`${containerSpacing} container mx-auto max-w-6xl pb-12 border-b border-gray-300/40`}>
+                <div className= {`${containerSpacing} container mx-auto max-w-6xl 2xl:max-w-7xl pb-12 border-b border-gray-300/40`}>
                     <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-lg">About us</h2>
                     <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#F0E3DE] mb-8 font-inter leading-tight max-w-4xl">
                         We Are <span className="text-primary">SPIN &apos;A&apos; CLOUD</span><br />
@@ -313,7 +313,7 @@ export default function AboutUs() {
             </section>
 
             <section className="px-4  ">
-                <div className={`container mx-auto max-w-6xl flex flex-col items-start border-b border-gray-300/40 py-12 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl flex flex-col items-start border-b border-gray-300/40 py-12 ${containerSpacing}`}>
                     <p className="text-[#F0E3DE] font-roboto font-extralight text-base md:text-lg  leading-relaxed mb-6 ">
                         Indian businesses have been paying for overseas cloud infrastructure for too long. Servers in other countries. Support in time zones that don&apos;t match yours. Bills that require a spreadsheet to understand. Pricing designed for Fortune 500 companies - not Indian startups, agencies, and enterprises.
                     </p>
@@ -325,7 +325,7 @@ export default function AboutUs() {
 
             {/* Mission Section */}
             <section className="px-4 ">
-                <div className={`container mx-auto max-w-6xl py-12 md:py-24  border-b border-gray-300/40 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24  border-b border-gray-300/40 ${containerSpacing}`}>
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div className="order-2 md:order-1 flex justify-start">
                             {/* Interactive Mission Visual for Design 1 */}
@@ -349,7 +349,7 @@ export default function AboutUs() {
 
             {/* Values Section */}
             <section className="px-4 relative">
-                <div className={`container mx-auto max-w-6xl border-b border-gray-300/40 py-12 md:py-24 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl border-b border-gray-300/40 py-12 md:py-24 ${containerSpacing}`}>
                     <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold text-center text-[#F0E3DE] mb-16 font-montserrat tracking-widest uppercase opacity-90">
                         Our Values
                     </h2>
@@ -446,7 +446,7 @@ export default function AboutUs() {
 
             {/* The Problem We Saw Section */}
             <section className="px-4   ">
-                <div className={`max-w-6xl mx-auto py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+                <div className={`max-w-6xl 2xl:max-w-7xl mx-auto py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
                     <div className="container mx-auto ">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-[#F0E3DE] mb-6 font-montserrat tracking-widest uppercase opacity-90">
@@ -498,7 +498,7 @@ export default function AboutUs() {
 
             {/* What Makes Us Different */}
             <section className="px-4 ">
-                <div className={`container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
                     <h2 className="text-3xl md:text-4xl font-bold text-center text-[#F0E3DE] mb-16 font-montserrat tracking-widest uppercase opacity-90">
                         What Makes Us Different
                     </h2>
@@ -548,7 +548,7 @@ export default function AboutUs() {
 
             {/* What SpinACloud Provides Section */}
             <section className="px-4  ">
-                <div className={`container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
                     <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm">What SpinACloud Provides</h2>
                     <h3 className="text-3xl md:text-4xl font-bold text-[#F0E3DE] mb-12 font-montserrat leading-tight max-w-3xl opacity-90">
                         Core infrastructure - the <span className="text-primary">three</span> essentials for any cloud setup:
@@ -604,7 +604,7 @@ export default function AboutUs() {
 
             {/* Who We Serve Section */}
             <section className="px-4 ">
-                <div className={`container mx-auto max-w-6xl  py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl  py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
                     <div className="mb-12 max-w-4xl">
                         <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm">Who We Serve</h2>
                         <h3 className="text-3xl md:text-4xl font-bold text-[#F0E3DE] font-montserrat leading-tight opacity-90">

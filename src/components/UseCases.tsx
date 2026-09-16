@@ -57,7 +57,7 @@ export default function UseCases() {
         {/* Subtle glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-orange-500/[0.09] blur-[160px] pointer-events-none rounded-full" />
 
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10">
           <div className="text-center mb-20">
             <span className="text-xs font-medium uppercase tracking-widest text-neutral-400 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 inline-block mb-4">
               Built for Every Scale
@@ -109,7 +109,7 @@ export default function UseCases() {
   // Design 1 Figma Classic Variant
   return (
     <section className="py-16 lg:py-24 px-4 bg-[#282828] border-y border-gray-800/80 relative">
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-primary font-semibold tracking-wider text-lg uppercase mb-4 font-montserrat">Choose Your Path</h2>
           <h3 className="text-2xl md:text-4xl font-bold text-[#F0E3DE] mb-6 font-montserrat">One Platform, Every Use Case</h3>

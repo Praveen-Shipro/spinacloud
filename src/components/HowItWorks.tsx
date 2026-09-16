@@ -22,7 +22,7 @@ export default function HowItWorks() {
         {/* Ambient background glow */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-orange-500/[0.08] rounded-full blur-[150px] pointer-events-none" />
 
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10">
           <div className="mb-20 text-center lg:text-left">
             <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-4">
               Streamlined Provisioning
@@ -143,7 +143,7 @@ export default function HowItWorks() {
   // Design 1 Figma Classic Variant
   return (
     <section className=" px-4 relative bg-[#282828]">
-      <div className="container mx-auto max-w-6xl border-b border-gray-300/40 py-24">
+      <div className="container mx-auto max-w-6xl 2xl:max-w-7xl border-b border-gray-300/40 py-24">
         <div className="grid lg:grid-cols-2 gap-8 px-4 items-center">
           {/* Terminal Mockup */}
           <div className="rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl font-mono text-sm leading-relaxed">

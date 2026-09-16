@@ -110,7 +110,7 @@ function HorizontalProvisionScroll({
         ref={sectionRef}
         className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-white/10 z-10 bg-slate-800"
       >
-        <div className={`container mx-auto max-w-6xl w-full px-4 ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl w-full px-4 ${containerSpacing}`}>
           {/* Header with scroll progress indicator */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 md:mb-12 gap-4">
             <div>
@@ -183,7 +183,7 @@ function HorizontalProvisionScroll({
       ref={sectionRef}
       className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-gray-300/40 px-4 bg-[#222222]"
     >
-      <div className={`container mx-auto max-w-6xl w-full ${containerSpacing}`}>
+      <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl w-full ${containerSpacing}`}>
         {/* Header with progress */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 md:mb-12 gap-4">
           <div>
@@ -391,7 +391,7 @@ export default function ServicesPage() {
 
         {/* Hero Section */}
         <section className="px-4 pt-20 pb-16 border-b border-white/10 relative z-10">
-          <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
             <span className="text-xs font-bold font-montserrat uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-6">
               Services
             </span>
@@ -440,7 +440,7 @@ export default function ServicesPage() {
 
         {/* Service 1 / Service 2 Overview Card */}
         <section className="px-4 py-20 border-b border-white/10 relative z-10">
-          <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
             {activeTab === 'service1' ? (
               <div className="grid lg:grid-cols-12 gap-12 items-center">
                 <div className="lg:col-span-7 space-y-6">
@@ -572,7 +572,7 @@ export default function ServicesPage() {
 
         {/* Who This Service Is For */}
         <section className="px-4 py-20 border-b border-white/10 relative z-10">
-          <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
             <div className="rounded-3xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 p-4 md:p-12 backdrop-blur-xl">
               <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
                 Who this service is for:
@@ -601,7 +601,7 @@ export default function ServicesPage() {
 
         {/* What's Included on Every Plan */}
         <section className="px-4 py-20 border-b border-white/10 relative z-10">
-          <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
             <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-12 tracking-tight">
               What&apos;s included on every plan:
             </h2>
@@ -652,7 +652,7 @@ export default function ServicesPage() {
 
         {/* Which Service Do I Need? */}
         <section className="px-4 py-20 border-b border-white/10 relative z-10">
-          <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-12 tracking-tight">
               Which service do I need?
             </h2>
@@ -690,7 +690,7 @@ export default function ServicesPage() {
 
         {/* CTA Banner & Follow Us */}
         <section className="px-4 py-20 relative z-10">
-          <div className={`container mx-auto max-w-6xl space-y-12 ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl space-y-12 ${containerSpacing}`}>
             {/* Desktop CTA Banner */}
             <div className="rounded-3xl bg-gradient-to-r from-orange-600 via-[#d85803] to-amber-600 p-8 md:p-14 text-center text-white shadow-2xl shadow-orange-500/20">
               <h2 className="text-2xl md:text-4xl font-extrabold mb-4 tracking-tight">
@@ -754,7 +754,7 @@ export default function ServicesPage() {
         {/* <div className="absolute top-0 -left-16 w-[600px] h-[600px]  rounded-full blur-[120px] pointer-events-none animate-pulse duration-1000" /> */}
         <div className="absolute bottom-0 -right-16 w-[600px] h-[600px] bg-[#FF6600]/[0.15] rounded-full blur-[120px] pointer-events-none" />
 
-        <div className={`${containerSpacing} container mx-auto max-w-6xl pb-12 border-b border-gray-300/40 relative z-10`}>
+        <div className={`${containerSpacing} container mx-auto max-w-6xl 2xl:max-w-7xl pb-12 border-b border-gray-300/40 relative z-10`}>
           <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-lg">
             Services
           </h2>
@@ -781,7 +781,7 @@ export default function ServicesPage() {
       {/* Service 1 / Service 2 Overview */}
       <section className="px-4">
 
-        <div className={`container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
           {/* Service Toggle Pills */}
           <div className="flex flex-wrap gap-4 justify-center items-center mb-15">
             <button
@@ -904,7 +904,7 @@ export default function ServicesPage() {
 
       {/* Who this service is for */}
       <section className="px-4">
-        <div className={`container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
           {activeTab === 'service1' ? (
             <div className="border border-gray-300/40 rounded-xl p-4 md:p-12 bg-[#0d0d0d]">
             <h2 className="text-xl md:text-2xl font-bold font-montserrat text-[#FFFFFF] mb-6">
@@ -952,7 +952,7 @@ export default function ServicesPage() {
 
       {/* Which service do I need? */}
       <section className="px-4">
-        <div className={`container mx-auto max-w-6xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
           <h2 className="text-2xl md:text-4xl font-bold font-montserrat text-[#F0E3DE] mb-12 opacity-90">
             Which service do I need?
           </h2>
@@ -990,7 +990,7 @@ export default function ServicesPage() {
 
       {/* Bottom CTA Banner & Follow Us */}
       <section className="px-4 pt-16">
-        <div className={`container mx-auto max-w-6xl space-y-12 ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl space-y-12 ${containerSpacing}`}>
           {/* Orange Gradient CTA Banner */}
           <div className="rounded-3xl bg-gradient-to-r from-[#FF6600]/50 to-[#FF9752] p-8 md:p-12 text-center text-white shadow-xl shadow-orange-500/10">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-montserrat mb-4 tracking-tight">

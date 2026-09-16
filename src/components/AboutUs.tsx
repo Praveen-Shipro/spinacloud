@@ -13,7 +13,7 @@ export default function AboutUs() {
         {/* Subtle radial glow */}
         <div className="absolute top-1/2 right-10 -translate-y-1/2 w-96 h-96 bg-orange-500/[0.08] rounded-full blur-[150px] pointer-events-none" />
 
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Video container with modern glass frame */}
             <div className="order-2 md:order-1 relative rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] backdrop-blur-2xl p-4 shadow-2xl group hover:border-orange-500/30 transition-all duration-500">
@@ -79,7 +79,7 @@ export default function AboutUs() {
   // Design 1 Figma Classic Variant
   return (
     <section id="about" className="px-4 relative">
-      <div className="container mx-auto border-b border-gray-300/40 py-12 lg:py-24 max-w-6xl">
+      <div className="container mx-auto border-b border-gray-300/40 py-12 lg:py-24 max-w-6xl 2xl:max-w-7xl">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Video — visible only on md+ (desktop side-by-side layout) */}
           <div className="hidden md:block md:order-1 relative ">

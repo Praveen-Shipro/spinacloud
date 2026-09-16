@@ -15,7 +15,7 @@ export default function Footer() {
         {/* Subtle glow */}
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/[0.05] rounded-full blur-[150px] pointer-events-none" />
 
-        <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
             
             <div className="md:col-span-5 space-y-6">
@@ -122,7 +122,7 @@ export default function Footer() {
   // Design 1 Figma Classic Variant
   return (
     <footer className="py-24 px-4 bg-[#0a0a0a]">
-      <div className="container mx-auto max-w-6xl px-5">
+      <div className="container mx-auto max-w-6xl 2xl:max-w-7xl px-5">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
           
           <div className="md:col-span-4 lg:col-span-5 space-y-6 border-gray-300/40 border-dashed md:border-r">

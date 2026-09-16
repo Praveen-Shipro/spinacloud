@@ -242,7 +242,7 @@ export default function ContactUsPage() {
 
         {/* Hero Section */}
         <section className="px-4 pt-20 pb-16 border-b border-white/10 relative z-10">
-          <div className={`container mx-auto max-w-6xl text-center ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl text-center ${containerSpacing}`}>
             <span className="text-xs font-bold font-montserrat uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-6">
               Contact us
             </span>
@@ -257,7 +257,7 @@ export default function ContactUsPage() {
 
         {/* Main 2-Column Section: Get in Touch & Contact Form */}
         <section className="px-4 py-16 md:py-24 border-b border-white/10 relative z-10">
-          <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
             <div className="grid lg:grid-cols-12 gap-10 items-start">
               
               {/* Left Column: Get in Touch */}
@@ -490,7 +490,7 @@ export default function ContactUsPage() {
 
         {/* Follow Spin A Cloud Gradient Banner */}
         <section className="px-4 py-16 relative z-10">
-          <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+          <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
             <div className="rounded-3xl bg-[linear-gradient(to_right,#FF6600_55%,#FF9752_100%)] p-8 md:p-14 text-center text-white shadow-2xl shadow-orange-500/25">
               <h2 className="text-2xl md:text-4xl font-extrabold mb-3 tracking-tight font-montserrat">
                 Follow Spin A Cloud
@@ -572,7 +572,7 @@ export default function ContactUsPage() {
       
       {/* Hero Section */}
       <section className="px-4 pt-16 pb-12 border-b border-gray-300/40 bg-gray-900/10">
-        <div className={`container mx-auto max-w-6xl text-center lg:py-10 ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl text-center lg:py-10 ${containerSpacing}`}>
           <h2 className="text-primary font-semibold tracking-wider text-xs md:text-sm uppercase mb-3 font-montserrat">
             Contact us
           </h2>
@@ -587,7 +587,7 @@ export default function ContactUsPage() {
 
       {/* Main 2-Column Section */}
       <section className="px-4 py-16 md:py-24 border-b border-gray-300/40">
-        <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
           <h2 className="text-sm md:text-lg font-bold font-montserrat text-primary mb-6">
                 Get in Touch
               </h2>
@@ -803,7 +803,7 @@ export default function ContactUsPage() {
 
       {/* Follow Spin A Cloud Gradient Banner */}
       <section className="px-4 py-16 border-b border-gray-300/40">
-        <div className={`container mx-auto max-w-6xl ${containerSpacing}`}>
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl ${containerSpacing}`}>
           <div className="rounded-2xl bg-[linear-gradient(to_right,#FF6600_55%,#FF9752_100%)] p-8 md:p-14 text-center text-white shadow-xl">
             <h2 className="text-2xl md:text-4xl font-bold font-montserrat mb-3 text-white">
               Follow Spin A Cloud
