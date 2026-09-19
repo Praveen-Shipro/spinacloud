@@ -24,7 +24,7 @@ export default function AboutUs() {
                             About us
                         </span>
                         <h1 className="text-xl md:text-3xl font-extrabold text-white mb-8 leading-tight max-w-4xl tracking-tight">
-                            We Are <span className="text-primary">SPIN &apos;A&apos; CLOUD&trade;</span><br />
+                            We Are <span className="text-primary">SPIN&apos;A&apos;CLOUD&trade;</span><br />
                             And We Are Spinning The Future Of Hosting In India
                         </h1>
                     </div>

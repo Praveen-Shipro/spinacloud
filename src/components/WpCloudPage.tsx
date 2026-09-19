@@ -182,12 +182,12 @@ export default function WpCloudPage() {
             >
               Get Started with Spin&apos;A&apos;Cloud&trade;
             </Link>
-            <Link
+            {/* <Link
               href="/contact"
               className="px-8 py-3 rounded-full bg-white text-black hover:bg-neutral-200 border border-white/20 font-montserrat font-semibold transition-all duration-100  active:scale-95 text-center text-sm md:text-base"
             >
               Talk to Us
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>
