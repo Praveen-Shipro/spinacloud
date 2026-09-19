@@ -24,7 +24,7 @@ export default function AboutUs() {
                             About us
                         </span>
                         <h1 className="text-xl md:text-3xl font-extrabold text-white mb-8 leading-tight max-w-4xl tracking-tight">
-                            We Are <span className="text-primary">SPIN &apos;A&apos; CLOUD</span><br />
+                            We Are <span className="text-primary">SPIN &apos;A&apos; CLOUD&trade;</span><br />
                             And We Are Spinning The Future Of Hosting In India
                         </h1>
                     </div>
@@ -35,7 +35,7 @@ export default function AboutUs() {
                             Indian businesses have been paying for overseas cloud infrastructure for too long. Servers in other countries. Support in time zones that don&apos;t match yours. Bills that require a spreadsheet to understand. Pricing designed for Fortune 500 companies - not Indian startups, agencies, and enterprises.
                         </p>
                         <p className="text-neutral-400 text-lg md:text-xl max-w-3xl leading-relaxed">
-                            SpinACloud was built to fix that. We are a cloud hosting platform based in Belagavi, Karnataka - operated by Shirish Productions - with infrastructure in Indian data centres, unlimited bandwidth on every plan, billing that is genuinely transparent, and a support team that is right here when you need them.
+                            Spin&apos;A&apos;Cloud&trade; was built to fix that. We are a cloud hosting platform based in Belagavi, Karnataka - operated by Shirish Productions - with infrastructure in Indian data centres, unmetered bandwidth on every plan, billing that is genuinely transparent, and a support team that is right here when you need them.
                         </p>
                     </div>
                 </section>
@@ -57,7 +57,7 @@ export default function AboutUs() {
                                     Making enterprise-grade cloud accessible to every Indian business.
                                 </h3>
                                 <p className="text-neutral-400 text-lg leading-relaxed">
-                                    To make reliable, high-performance cloud infrastructure accessible to every Indian business - from a solo developer&apos;s first project to an enterprise&apos;s production environment - with pricing that is honest, support that is human, unlimited bandwidth that removes the traffic ceiling, and servers that are close to home.
+                                    To make reliable, high-performance cloud infrastructure accessible to every Indian business - from a solo developer&apos;s first project to an enterprise&apos;s production environment - with pricing that is honest, support that is human, unmetered bandwidth that removes the traffic ceiling, and servers that are close to home.
                                 </p>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ export default function AboutUs() {
 
                         <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-orange-500/[0.1] to-transparent border border-orange-500/20 text-center">
                             <p className="text-neutral-300 text-lg md:text-xl mb-4">For most Indian businesses looking to move to the cloud, the options were:</p>
-                            <h3 className="text-4xl md:text-5xl font-extrabold text-primary">Spin A Cloud is.</h3>
+                            <h3 className="text-4xl md:text-5xl font-extrabold text-primary">Spin&apos;A&apos;Cloud&trade; is.</h3>
                         </div>
                     </div>
                 </section>
@@ -148,7 +148,7 @@ export default function AboutUs() {
                                     <DollarSign size={24} />
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-4 group-hover:text-orange-300 transition-colors">Billing that reflects reality</h3>
-                                <p className="text-neutral-400 leading-relaxed">Cloud hosting should scale with your business, not against it. SpinACloud&apos;s hourly billing means a quiet month costs less. A product launch month scales up automatically. You&apos;re never paying for headroom you don&apos;t need.</p>
+                                <p className="text-neutral-400 leading-relaxed">Cloud hosting should scale with your business, not against it. Spin&apos;A&apos;Cloud&trade;&apos;s hourly billing means a quiet month costs less. A product launch month scales up automatically. You&apos;re never paying for headroom you don&apos;t need.</p>
                             </div>
 
                             <div className="w-[85vw] md:w-auto shrink-0 snap-start p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 group">
@@ -156,7 +156,7 @@ export default function AboutUs() {
                                     <Cpu size={24} />
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-4 group-hover:text-orange-300 transition-colors">Depth without complexity.</h3>
-                                <p className="text-neutral-400 leading-relaxed">We built SpinACloud so a developer can access it via CLI with full root control, and a business owner can deploy a server through a clean dashboard without touching a terminal. The same platform serves both — you access as much or as little of its power as your needs require.</p>
+                                <p className="text-neutral-400 leading-relaxed">We built Spin&apos;A&apos;Cloud&trade; so a developer can access it via CLI with full root control, and a business owner can deploy a server through a clean dashboard without touching a terminal. The same platform serves both — you access as much or as little of its power as your needs require.</p>
                             </div>
 
                             <div className="w-[85vw] md:w-auto shrink-0 snap-start p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 group">
@@ -174,7 +174,7 @@ export default function AboutUs() {
                 <section className="px-4 py-20 border-b border-white/10 relative z-10">
                     <div className="container mx-auto max-w-6xl 2xl:max-w-7xl">
                         <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-4">
-                            What SpinACloud Provides
+                            What Spin&apos;A&apos;Cloud&trade; Provides
                         </span>
                         <h3 className="text-3xl md:text-5xl font-extrabold text-white mb-12 leading-tight max-w-3xl tracking-tight">
                             Core infrastructure - the <span className="text-primary">three</span> essentials for any cloud setup:
@@ -256,7 +256,7 @@ export default function AboutUs() {
                                 Who We Serve
                             </span>
                             <h3 className="text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight">
-                                SpinACloud is built for Indian businesses across the full spectrum of technical maturity and scale:
+                                Spin&apos;A&apos;Cloud&trade; is built for Indian businesses across the full spectrum of technical maturity and scale:
                             </h3>
                         </div>
 
@@ -287,7 +287,7 @@ export default function AboutUs() {
                 <section className="px-4 py-20 relative z-10">
                     <div className="container mx-auto flex flex-col sm:flex-row justify-center items-center gap-6">
                         <Link href="#get-started" className="px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 w-full sm:w-auto text-center">
-                            Start Hosting on SpinACloud
+                            Start Hosting on Spin&apos;A&apos;Cloud&trade;
                         </Link>
                         <Link href="#plans" className="px-8 py-4 bg-white/[0.05] border border-white/10 text-white font-bold rounded-full hover:bg-white/[0.1] transition-all backdrop-blur-md w-full sm:w-auto text-center">
                             See Our Plans
@@ -306,32 +306,39 @@ export default function AboutUs() {
                 <div className= {`${containerSpacing} container mx-auto max-w-6xl 2xl:max-w-7xl pb-12 border-b border-gray-300/40`}>
                     <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-lg">About us</h2>
                     <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#F0E3DE] mb-8 font-inter leading-tight max-w-4xl">
-                        We Are <span className="text-primary">SPIN &apos;A&apos; CLOUD</span><br />
+                        We Are <span className="text-primary">SPIN &apos;A&apos; CLOUD&trade;</span><br />
                         And We Are Spinning The Future Of Hosting In India
                     </h1>
                 </div>
             </section>
 
-            <section className="px-4  ">
-                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl flex flex-col items-start border-b border-gray-300/40 py-12 ${containerSpacing}`}>
-                    <p className="text-[#F0E3DE] font-roboto font-extralight text-base md:text-lg  leading-relaxed mb-6 ">
+            <section className="px-4 relative overflow-hidden bg-neutral-800/30">
+                {/* Ambient background glows for blur effect */}
+                <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[260px] bg-primary/[0.07] rounded-full blur-[130px] pointer-events-none" />
+                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[220px] bg-white/[0.03] rounded-full blur-[100px] pointer-events-none" />
+
+                {/* Frosted glass backdrop blur layer */}
+                <div className="absolute inset-0 bg-neutral-900/40 backdrop-blur-xl pointer-events-none" />
+
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl flex flex-col items-start border-b border-gray-300/40 py-12 md:py-24 relative z-10 ${containerSpacing}`}>
+                    <p className="text-[#F0E3DE] font-roboto font-extralight text-md md:text-base leading-relaxed mb-6 md:mb-12">
                         Indian businesses have been paying for overseas cloud infrastructure for too long. Servers in other countries. Support in time zones that don&apos;t match yours. Bills that require a spreadsheet to understand. Pricing designed for Fortune 500 companies - not Indian startups, agencies, and enterprises.
                     </p>
-                    <p className="text-[#F0E3DE] font-nunito font-extralight text-base md:text-lg  leading-relaxed ">
-                        SpinACloud was built to fix that. We are a cloud hosting platform based in Belagavi, Karnataka - operated by Shirish Productions - with infrastructure in Indian data centres, unlimited bandwidth on every plan, billing that is genuinely transparent, and a support team that is right here when you need them.
+                    <p className="text-[#F0E3DE] font-nunito font-extralight text-md md:text-base leading-relaxed">
+                        Spin&apos;A&apos;Cloud&trade; was built to fix that. We are a cloud hosting platform based in Belagavi, Karnataka - operated by Shirish Productions - with infrastructure in Indian data centres, unmetered bandwidth on every plan, billing that is genuinely transparent, and a support team that is right here when you need them.
                     </p>
                 </div>
             </section>
 
             {/* Mission Section */}
             <section className="px-4 ">
-                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24  border-b border-gray-300/40 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div className="order-2 md:order-1 flex justify-start">
                             {/* Interactive Mission Visual for Design 1 */}
                             <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 bg-[#080808] flex items-center justify-center">
                                 <DetailedIndiaMap />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a090d]/80 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-linear-to-t from-[#0a090d]/80 via-transparent to-transparent pointer-events-none" />
                             </div>
                         </div>
                         <div className="order-1 md:order-2">
@@ -340,7 +347,7 @@ export default function AboutUs() {
                                 Making enterprise-grade cloud accessible to every Indian business.
                             </h3>
                             <p className="text-[#F0E3DE] font-nunito font-extralight text-base leading-relaxed">
-                                To make reliable, high-performance cloud infrastructure accessible to every Indian business - from a solo developer&apos;s first project to an enterprise&apos;s production environment - with pricing that is honest, support that is human, unlimited bandwidth that removes the traffic ceiling, and servers that are close to home..
+                                To make reliable, high-performance cloud infrastructure accessible to every Indian business - from a solo developer&apos;s first project to an enterprise&apos;s production environment - with pricing that is honest, support that is human, unmetered bandwidth that removes the traffic ceiling, and servers that are close to home..
                             </p>
                         </div>
                     </div>
@@ -483,12 +490,12 @@ export default function AboutUs() {
                         </div>
                     </div>
 
-                    <div className="mt-16 p-8 md:p-12 bg-white/8     rounded-2xl text-center">
+                    <div className="mt-16 p-8 md:p-12 bg-white/10 backdrop-blur-md rounded-2xl">
                         <p className="text-[#F0E3DE] font-nunito font-extralight text-lg md:text-xl mb-4 opacity-80">
                             None of these were built for India.
                         </p>
                         <h3 className="text-3xl md:text-4xl font-bold text-primary font-montserrat">
-                            Spin A Cloud is.
+                            Spin&apos;A&apos;Cloud&trade; is.
                         </h3>
                     </div>
                 </div>
@@ -519,7 +526,7 @@ export default function AboutUs() {
                             </div>
                             <h3 className="text-xl font-bold text-[#F0E3DE] font-montserrat">Billing that reflects reality</h3>
                             <p className="text-[#F0E3DE] font-nunito font-extralight leading-relaxed opacity-80">
-                                Cloud hosting should scale with your business, not against it. SpinACloud&apos;s hourly billing means a quiet month costs less. A product launch month scales up automatically. You&apos;re never paying for headroom you don&apos;t need.
+                                Cloud hosting should scale with your business, not against it. Spin&apos;A&apos;Cloud&trade;&apos;s hourly billing means a quiet month costs less. A product launch month scales up automatically. You&apos;re never paying for headroom you don&apos;t need.
                             </p>
                         </div>
 
@@ -529,7 +536,7 @@ export default function AboutUs() {
                             </div>
                             <h3 className="text-xl font-bold text-[#F0E3DE] font-montserrat">Depth without complexity.</h3>
                             <p className="text-[#F0E3DE] font-nunito font-extralight leading-relaxed opacity-80">
-                                We built SpinACloud so a developer can access it via CLI with full root control, and a business owner can deploy a server through a clean dashboard without touching a terminal. The same platform serves both — you access as much or as little of its power as your needs require.
+                                We built Spin&apos;A&apos;Cloud&trade; so a developer can access it via CLI with full root control, and a business owner can deploy a server through a clean dashboard without touching a terminal. The same platform serves both — you access as much or as little of its power as your needs require.
                             </p>
                         </div>
 
@@ -549,7 +556,7 @@ export default function AboutUs() {
             {/* What SpinACloud Provides Section */}
             <section className="px-4  ">
                 <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
-                    <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm">What SpinACloud Provides</h2>
+                    <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm">What Spin&apos;A&apos;Cloud&trade; Provides</h2>
                     <h3 className="text-3xl md:text-4xl font-bold text-[#F0E3DE] mb-12 font-montserrat leading-tight max-w-3xl opacity-90">
                         Core infrastructure - the <span className="text-primary">three</span> essentials for any cloud setup:
                     </h3>
@@ -589,7 +596,7 @@ export default function AboutUs() {
                                 { num: '05', title: 'VM Backups', desc: 'Standalone disaster-recovery copies' },
                                 { num: '06', title: 'Templates', desc: 'Save and relaunch identical environments' }
                             ].map((addon, i) => (
-                                <div key={i} className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start flex gap-4 items-start border border-gray-300/20 md:border-0 md:border-b md:border-gray-300/20 p-6 md:p-0 md:pb-4 rounded-xl md:rounded-none bg-[#121212] md:bg-transparent">
+                                <div key={i} className="first:ml-4 md:first:ml-0 last:mr-4 md:last:mr-0 w-[85vw] md:w-auto shrink-0 snap-start flex gap-4 items-start  border-gray-300/20 border md:border-[#F0E3DE]/50 p-6 md:p-4 rounded-md bg-[#121212]/80 ">
                                     <span className="text-primary font-mono text-xl">{addon.num}</span>
                                     <div>
                                         <h5 className="text-[#F0E3DE] font-semibold font-montserrat">{addon.title}</h5>
@@ -604,15 +611,15 @@ export default function AboutUs() {
 
             {/* Who We Serve Section */}
             <section className="px-4 ">
-                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl  py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+                <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl  py-12 md:py-24 ${containerSpacing}`}>
                     <div className="mb-12 max-w-4xl">
-                        <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm">Who We Serve</h2>
-                        <h3 className="text-3xl md:text-4xl font-bold text-[#F0E3DE] font-montserrat leading-tight opacity-90">
-                            SpinACloud is built for Indian businesses across the full spectrum of technical maturity and scale:
+                        <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-sm md:text-lg">Who We Serve</h2>
+                        <h3 className="text-xl md:text-2xl font-bold text-[#F0E3DE] font-montserrat leading-tight opacity-90">
+                            Spin&apos;A&apos;Cloud&trade; is built for Indian businesses across the full spectrum of technical maturity and scale:
                         </h3>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-px border border-gray-300/40 border-dashed">
+                    <div className="grid md:grid-cols-2 gap-8 ">
                         {[
                             { title: 'Startups', desc: 'that need reliable infrastructure without an upfront commitment — pay for what you use, scale as you grow.' },
                             { title: 'E-Commerce Businesses', desc: 'that need to handle traffic spikes during festive sales and product launches without going down.' },
@@ -621,10 +628,10 @@ export default function AboutUs() {
                             { title: 'Agencies And Freelancers', desc: 'managing multiple client environments — separate VMs per client, reusable templates, and a single dashboard for everything.' },
                             { title: 'Enterprises', desc: 'needing high availability, Memory Optimised and CPU Optimised VM configurations, and Indian data centre hosting for compliance and performance requirements.' }
                         ].map((item, idx) => (
-                            <div key={idx} className={`bg-[#0a0a0a] p-8 flex items-start gap-4 hover:bg-white/5 transition-colors ${idx % 2 === 0 ? 'md:border-r border-gray-300/40 border-dashed' : ''} ${idx < 4 ? 'border-b border-gray-300/40 border-dashed' : ''}`}>
-                                <CheckSquare className="text-primary mt-1 shrink-0" size={20} />
+                            <div key={idx} className={`bg-[#4C4C4C] p-8 flex items-center gap-4 rounded-lg transition-colors `}>
+                                <CheckSquare className="text-primary mt-1 shrink-0" size={30} />
                                 <div>
-                                    <h4 className="text-[#F0E3DE] font-bold mb-2 font-montserrat">{item.title}</h4>
+                                    <h4 className="text-[#F0E3DE] font-bold mb-2 text-base md:text-lg font-montserrat">{item.title}</h4>
                                     <p className="text-[#F0E3DE] text-sm font-nunito font-extralight opacity-80 leading-relaxed">{item.desc}</p>
                                 </div>
                             </div>
@@ -634,12 +641,12 @@ export default function AboutUs() {
             </section>
 
             {/* CTA Section */}
-            <section className="px-4 py-16 text-center">
+            <section className="px-4 text-center">
                 <div className="container mx-auto flex flex-col sm:flex-row justify-center items-center gap-6">
-                    <Link href="#get-started" className="px-8 py-4 bg-linear-to-r from-[#FF6600]/50 to-[#FF9752] text-white font-bold font-montserrat rounded-full hover:bg-orange-600 transition-colors w-full sm:w-auto">
-                        Start Hosting on SpinACloud
+                    <Link href="#get-started" className="px-8 py-4 bg-linear-to-r from-[#FF6600]/50 to-[#FF9752] text-white font-semibold font-montserrat rounded-full hover:bg-orange-600 transition-colors w-full sm:w-auto">
+                        Start Hosting on Spin&apos;A&apos;Cloud&trade;
                     </Link>
-                    <Link href="#plans" className="px-8 py-4 bg-white text-black font-bold font-montserrat rounded-full hover:bg-gray-200 transition-colors w-full sm:w-auto">
+                    <Link href="#plans" className="px-8 py-4 bg-white text-black font-semibold font-montserrat rounded-full hover:bg-gray-200 transition-colors w-full sm:w-auto">
                         See Our Plans
                     </Link>
                 </div>

@@ -213,46 +213,65 @@ export default function Pricing() {
         </div>
 
         {/* Desktop: original grid (md and above) */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 px-4">
-          {plans.map((plan, idx) => (
-            <div 
-              key={idx} 
-              className={`group relative rounded-2xl p-8 border transition-all duration-200 ease-out transform ${
-                plan.highlighted 
-                  ? 'border-primary bg-white/[0.03] scale-105 hover:scale-[1.08] hover:-translate-y-2.5 shadow-[0_0_30px_rgba(232,93,4,0.15)] hover:shadow-[0_20px_50px_rgba(232,93,4,0.3)] z-10' 
-                  : 'border-white/10 bg-black hover:border-primary/60 hover:bg-white/[0.02] hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)]'
-              }`}
-            >
-              {/* Subtle top inner hover glow overlay */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div 
+          className="hidden md:grid md:grid-cols-3 gap-6 px-4"
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          {plans.map((plan, idx) => {
+            const isBorderPrimary = (hoveredCard === null && plan.highlighted) || hoveredCard === idx;
+            const isGlowActive = isBorderPrimary;
 
-              <h4 className="text-3xl font-bold text-white mb-2 font-montserrat uppercase tracking-wider text-center group-hover:text-primary transition-colors duration-300">{plan.name}</h4>
-              <p className="text-neutral-400 mb-6 text-sm text-center font-nunito">{plan.description}</p>
-              
-              <div className="mb-8 text-center">
-                <span className="text-2xl font-inter font-bold text-white inline-block group-hover:scale-105 transition-transform duration-300">{plan.hourlyPrice}</span>
-              </div>
-              
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, fIdx) => (
-                  <li key={fIdx} className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300 shrink-0" strokeWidth={3} />
-                    <span className="text-neutral-300 text-xs font-inter group-hover:text-white transition-colors duration-300">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <button 
-                className={`w-full py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] ${
+            return (
+              <div 
+                key={idx} 
+                onMouseEnter={() => setHoveredCard(idx)}
+                className={`group relative rounded-2xl p-8 border transition-all duration-200 ease-out transform hover:bg-neutral-900/90 ${
+                  isBorderPrimary ? 'border-primary' : 'border-white/10'
+                } ${
                   plan.highlighted 
-                    ? 'bg-primary text-white hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(232,93,4,0.4)]' 
-                    : 'bg-white/10 text-white hover:bg-white/20 hover:border-white/30'
+                    ? `bg-white/[0.03] scale-105 hover:scale-[1.08] hover:-translate-y-2.5 ${
+                        isGlowActive 
+                          ? 'shadow-[0_0_30px_rgba(232,93,4,0.15)] hover:shadow-[0_20px_50px_rgba(232,93,4,0.3)]' 
+                          : 'shadow-none'
+                      } z-10` 
+                    : `bg-black hover:-translate-y-2.5 ${
+                        isGlowActive 
+                          ? 'shadow-[0_0_30px_rgba(232,93,4,0.15)] hover:shadow-[0_20px_50px_rgba(232,93,4,0.3)]' 
+                          : 'hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)]'
+                      } z-0 hover:z-20`
                 }`}
               >
-                Get Started
-              </button>
-            </div>
-          ))}
+                {/* Subtle top inner hover glow overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                <h4 className="text-3xl font-bold text-white mb-2 font-montserrat uppercase tracking-wider text-center group-hover:text-primary transition-colors duration-300">{plan.name}</h4>
+                <p className="text-neutral-400 mb-6 text-sm text-center font-nunito">{plan.description}</p>
+                
+                <div className="mb-8 text-center">
+                  <span className="text-2xl font-inter font-bold text-white inline-block group-hover:scale-105 transition-transform duration-300">{plan.hourlyPrice}</span>
+                </div>
+                
+                <ul className="space-y-4 mb-8">
+                  {plan.features.map((feature, fIdx) => (
+                    <li key={fIdx} className="flex items-center gap-3">
+                      <Check className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300 shrink-0" strokeWidth={3} />
+                      <span className="text-neutral-300 text-xs font-inter group-hover:text-white transition-colors duration-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <button 
+                  className={`w-full py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:cursor-pointer ${
+                    isBorderPrimary 
+                      ? 'bg-primary text-white hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(232,93,4,0.4)]' 
+                      : 'bg-white/10 text-white hover:bg-white/20 hover:border-white/30'
+                  }`}
+                >
+                  Get Started
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         {/* Mobile: Swiper cards effect slider (below md) */}

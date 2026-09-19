@@ -67,7 +67,7 @@ export default function AboutUs() {
               </p>
 
               <p className="text-base md:text-lg leading-relaxed text-neutral-400">
-                SpinACloud gives you that enterprise-grade resilience without the complexity. Physically stationed close to your Indian audience for maximum speed and sub-second load times.
+                Spin&apos;A&apos;Cloud&trade; gives you that enterprise-grade resilience without the complexity. Physically stationed close to your Indian audience for maximum speed and sub-second load times.
               </p>
             </div>
           </div>
@@ -78,17 +78,17 @@ export default function AboutUs() {
 
   // Design 1 Figma Classic Variant
   return (
-    <section id="about" className="px-4 relative">
+    <section id="about" className="px-4 relative bg-neutral-800/30">
       <div className="container mx-auto border-b border-gray-300/40 py-12 lg:py-24 max-w-6xl 2xl:max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-10 items-center">
           {/* Video — visible only on md+ (desktop side-by-side layout) */}
-          <div className="hidden md:block md:order-1 relative ">
+          <div className="hidden md:block md:order-1 relative md:col-span-2">
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="inset-0 object-cover mx-auto opacity-80 pointer-events-none mix-blend-screen px-4 "
+              className="inset-0 object-cover mx-auto opacity-80 pointer-events-none mix-blend-screen px-0 "
             >
               <source src="/assets/videos/video-2.mp4" type="video/mp4" />
             </video>
@@ -114,11 +114,11 @@ export default function AboutUs() {
               </video>
             </div>
 
-            <p className='text-[#F0E3DE] font-nunito font-extralight'>
+            <p className='text-[#F0E3DE] text-base font-nunito font-extralight'>
               Traditional hosting ties your website to one physical machine. If it fails, you are down. Cloud hosting distributes your workload across a network of servers - so there&apos;s no single point of failure. Your app keeps running even if a machine goes offline.
             </p>
-            <p className='text-[#F0E3DE] font-nunito font-extralight'>
-              SpinACloud gives you that enterprise-grade resilience, without the enterprise-grade price tag and with infrastructure that&apos;s physically close to your Indian visitors, meaning faster load times and lower latency.
+            <p className='text-[#F0E3DE] text-base font-nunito font-extralight'>
+              Spin&apos;A&apos;Cloud&trade; gives you that enterprise-grade resilience, without the enterprise-grade price tag and with infrastructure that&apos;s physically close to your Indian visitors, meaning faster load times and lower latency.
             </p>
           </div>
         </div>

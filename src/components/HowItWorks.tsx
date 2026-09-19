@@ -1,8 +1,141 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Terminal, CheckCircle2, Copy, Check } from 'lucide-react';
 import { useDesign } from '@/context/DesignContext';
+
+function Design1AnimatedTerminal() {
+  const fullCommand = 'brew install --cask 4k-video-to-mp3';
+  const [typedCommand, setTypedCommand] = useState('');
+  const [visibleStep, setVisibleStep] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    let timeouts: NodeJS.Timeout[] = [];
+    let typingInterval: NodeJS.Timeout | null = null;
+    let isCancelled = false;
+
+    const addTimeout = (fn: () => void, delayMs: number) => {
+      const id = setTimeout(() => {
+        if (!isCancelled) fn();
+      }, delayMs);
+      timeouts.push(id);
+      return id;
+    };
+
+    const startSequence = () => {
+      timeouts.forEach(clearTimeout);
+      timeouts = [];
+      if (typingInterval) clearInterval(typingInterval);
+
+      setTypedCommand('');
+      setVisibleStep(0);
+      setIsTyping(true);
+
+      // Initial pause before typing starts
+      addTimeout(() => {
+        let index = 0;
+        typingInterval = setInterval(() => {
+          if (isCancelled) return;
+          index++;
+          setTypedCommand(fullCommand.slice(0, index));
+
+          if (index >= fullCommand.length) {
+            if (typingInterval) clearInterval(typingInterval);
+            setIsTyping(false);
+
+            // Staggered CLI output logs
+            const stepDelays = [
+              350,  // ==> Downloading...
+              750,  // Already downloaded...
+              1100, // ==> Installing Cask...
+              1450, // ==> Moving App...
+              1850, // 🍺 successfully installed!
+              2250, // Final prompt with blinking cursor
+            ];
+
+            stepDelays.forEach((delay, stepIdx) => {
+              addTimeout(() => {
+                setVisibleStep(stepIdx + 1);
+              }, delay);
+            });
+
+            // Keep complete terminal visible for 6 seconds, then loop
+            addTimeout(() => {
+              startSequence();
+            }, 2250 + 6000);
+          }
+        }, 45);
+      }, 700);
+    };
+
+    startSequence();
+
+    return () => {
+      isCancelled = true;
+      timeouts.forEach(clearTimeout);
+      if (typingInterval) clearInterval(typingInterval);
+    };
+  }, []);
+
+  return (
+    <div className="rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl font-mono text-sm leading-relaxed min-h-[350px] md:min-h-[340px] flex flex-col">
+      <div className="bg-white/5 px-4 py-2.5 flex items-center gap-2 border-b border-white/10 shrink-0">
+        <div className="w-3 h-3 rounded-full bg-red-500" />
+        <div className="w-3 h-3 rounded-full bg-yellow-500" />
+        <div className="w-3 h-3 rounded-full bg-green-500" />
+      </div>
+      <div className="p-6 text-neutral-300 flex-1 flex flex-col justify-start">
+        <div className="flex flex-wrap items-center text-green-400">
+          <span className="mr-2">alganov@user-2JL20VG2X2-DS</span>
+          <span className="text-blue-400">~ %</span>
+          <span className="text-white ml-2">{typedCommand}</span>
+          {isTyping && (
+            <span className="inline-block w-2 h-4 bg-white animate-pulse ml-1 align-middle" />
+          )}
+        </div>
+
+        {visibleStep >= 1 && (
+          <div className="text-neutral-500 mt-1">
+            {"==> Downloading https://dl.4kdownload.com/app/4kvideotomp3_3.0..."}
+          </div>
+        )}
+
+        {visibleStep >= 2 && (
+          <div className="mt-1 text-neutral-400 break-all">
+            {"Already downloaded: /Users/alganov/Library/Caches/Homebrew/downloads/50862468000b112b378e388ef9979aafb5ce1752ea370cd4960cd40e89be8f3--4kvideotomp3_3.0.1.dmg"}
+          </div>
+        )}
+
+        {visibleStep >= 3 && (
+          <div className="text-blue-400 mt-1">
+            {"==> Installing Cask 4k-video-to-mp3"}
+          </div>
+        )}
+
+        {visibleStep >= 4 && (
+          <div className="mt-1">
+            {"==> Moving App '4K Video to MP3.app' to '/Applications/4K Video to MP3.app'"}
+          </div>
+        )}
+
+        {visibleStep >= 5 && (
+          <div className="text-green-400 font-bold mt-1">
+            🍺  4k-video-to-mp3 was successfully installed!
+          </div>
+        )}
+
+        {visibleStep >= 6 && (
+          <div className="flex items-center text-green-400 mt-2">
+            <span className="mr-2">alganov@user-2JL20VG2X2-DS</span>
+            <span className="text-blue-400">~ %</span>
+            <span className="inline-block w-2 h-4 bg-white animate-pulse ml-2" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function HowItWorks() {
   const { designVariant } = useDesign();
@@ -144,82 +277,63 @@ export default function HowItWorks() {
   return (
     <section className=" px-4 relative bg-[#282828]">
       <div className="container mx-auto max-w-6xl 2xl:max-w-7xl border-b border-gray-300/40 py-24">
-        <div className="grid lg:grid-cols-2 gap-8 px-4 items-center">
-          {/* Terminal Mockup */}
-          <div className="rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl font-mono text-sm leading-relaxed">
-            <div className="bg-white/5 px-4 py-2 flex gap-2 border-b border-white/10">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
-            </div>
-            <div className="p-6 text-neutral-300">
-              <div className="flex text-green-400">
-                <span className="mr-2">alganov@user-2JL20VG2X2-DS</span>
-                <span className="text-blue-400">~ %</span>
-                <span className="text-white ml-2">brew install --cask 4k-video-to-mp3</span>
-              </div>
-              <div className="text-neutral-500 mt-1">
-                {"==> Downloading https://dl.4kdownload.com/app/4kvideotomp3_3.0..."}
-              </div>
-              <div className="mt-1">
-                {"Already downloaded: /Users/alganov/Library/Caches/Homebrew/downloads/50862468000b112b378e388ef9979aafb5ce1752ea370cd4960cd40e89be8f3--4kvideotomp3_3.0.1.dmg"}
-              </div>
-              <div className="text-blue-400 mt-1">
-                {"==> Installing Cask 4k-video-to-mp3"}
-              </div>
-              <div className="mt-1">
-                {"==> Moving App '4K Video to MP3.app' to '/Applications/4K Video to MP3.app'"}
-              </div>
-              <div className="text-green-400 font-bold mt-1">
-                🍺  4k-video-to-mp3 was successfully installed!
-              </div>
-              <div className="flex text-green-400 mt-2">
-                <span className="mr-2">alganov@user-2JL20VG2X2-DS</span>
-                <span className="text-blue-400">~ %</span>
-                <span className="w-2 h-4 bg-white animate-pulse ml-2" />
-              </div>
-            </div>
-          </div>
+        <div className="grid lg:grid-cols-2 gap-8 px-0 items-center">
+          {/* Animated Terminal Mockup */}
+          <Design1AnimatedTerminal />
 
           {/* Steps */}
-          <div className="space-y-12">
-            <div className="mb-16">
-          <h2 className="text-primary font-semibold tracking-wider text-sm uppercase mb-2">Deploy In Three Simple Phases</h2>
-          <h3 className="text-xl md:text-2xl font-bold font-montserrat mb-6 text-[#F0E3DE] opacity-75 max-w-2xl">From Zero To Live In Three Steps</h3>
-        </div>
-            <div className="relative flex gap-6">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-transparent border border-white/20 text-white flex items-center justify-center font-bold z-10 relative mt-1">
-                1
-              </div>
-              <div>
-                <h4 className="text-base font-bold font-montserrat text-white mb-0.5">Step 1: Create Your Account</h4>
-                <p className="text-neutral-400 leading-relaxed text-sm font-normal font-nunito">
-                  Sign Up In Minutes. No Credit Card Required To Explore The Dashboard.
-                </p>
-              </div>
+          <div>
+            <div className="mb-8">
+              <h2 className="text-primary font-semibold tracking-wider text-sm uppercase mb-2">Deploy In Three Simple Phases</h2>
+              <h3 className="text-2xl md:text-4xl font-bold font-montserrat mb-3 text-[#F0E3DE] opacity-75 max-w-2xl">From Zero To Live In Three Steps</h3>
             </div>
 
-            <div className="relative flex gap-6">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-transparent border border-white/20 text-white flex items-center justify-center font-bold z-10 relative mt-1">
-                2
+            <div>
+              {/* Step 1 */}
+              <div className="flex gap-6">
+                <div className="flex flex-col items-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[#282828] border border-primary text-white flex items-center justify-center font-bold z-10 relative">
+                    1
+                  </div>
+                  <div className="w-0 flex-1 my-1 border-l-2 border-dotted border-white" />
+                </div>
+                <div className="pb-10 pt-1">
+                  <h4 className="text-base font-bold font-montserrat text-white mb-0.5">Step 1: Create Your Account</h4>
+                  <p className="text-neutral-400 leading-relaxed text-sm font-normal font-nunito">
+                    Sign Up In Minutes. No Credit Card Required To Explore The Dashboard.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-base font-bold font-montserrat text-white mb-0.5">Step 2: Choose Your Configuration</h4>
-                <p className="text-neutral-400 leading-relaxed text-sm font-normal font-nunito">
-                  Pick A VM Plan, Add Storage Volumes, Assign An IP, And Add Any Features You Need - Virtual Router, Load Balancer, Snapshots, Backups.
-                </p>
-              </div>
-            </div>
 
-            <div className="relative flex gap-6">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-transparent border border-white/20 text-white flex items-center justify-center font-bold z-10 relative mt-1">
-                3
+              {/* Step 2 */}
+              <div className="flex gap-6">
+                <div className="flex flex-col items-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[#282828] border border-primary text-white flex items-center justify-center font-bold z-10 relative">
+                    2
+                  </div>
+                  <div className="w-0 flex-1 my-1 border-l-2 border-dotted border-white" />
+                </div>
+                <div className="pb-10 pt-1">
+                  <h4 className="text-base font-bold font-montserrat text-white mb-0.5">Step 2: Choose Your Configuration</h4>
+                  <p className="text-neutral-400 leading-relaxed text-sm font-normal font-nunito">
+                    Pick A VM Plan, Add Storage Volumes, Assign An IP, And Add Any Features You Need - Virtual Router, Load Balancer, Snapshots, Backups.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-base font-bold font-montserrat text-white mb-0.5">Step 3: Deploy And Go Live</h4>
-                <p className="text-neutral-400 leading-relaxed text-sm font-normal font-nunito">
-                  Your Infrastructure Is Ready In Under Two Minutes. Point Your Domain, Deploy Your App, And You Are Live.
-                </p>
+
+              {/* Step 3 */}
+              <div className="flex gap-6">
+                <div className="flex flex-col items-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[#282828] border border-primary text-white flex items-center justify-center font-bold z-10 relative">
+                    3
+                  </div>
+                </div>
+                <div className="pt-1">
+                  <h4 className="text-base font-bold font-montserrat text-white mb-0.5">Step 3: Deploy And Go Live</h4>
+                  <p className="text-neutral-400 leading-relaxed text-sm font-normal font-nunito">
+                    Your Infrastructure Is Ready In Under Two Minutes. Point Your Domain, Deploy Your App, And You Are Live.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

@@ -50,7 +50,7 @@ export default function Features() {
               Supported Workloads
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white">
-              What Can You Host On <span className="text-primary">Spin A Cloud?</span>
+              What Can You Host On <span className="text-primary">Spin&apos;A&apos;Cloud&trade;?</span>
             </h2>
           </div>
           
@@ -58,7 +58,7 @@ export default function Features() {
             {features.map((feature, idx) => (
               <div 
                 key={idx} 
-                className="group flex items-start gap-4 p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5"
+                className="group flex items-start gap-4 p-6 rounded-2xl bg-[#282828] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5"
               >
                 <div className="mt-1 flex-shrink-0 p-2.5 rounded-xl bg-orange-500/10 text-orange-400 group-hover:scale-105 transition-transform">
                   <CheckSquare className="w-5 h-5 text-orange-400" />
@@ -85,12 +85,12 @@ export default function Features() {
       <div className="px-1 md:px-8 border-y border-gray-300/40 lg:border-0 py-12 lg:py-0">
       <div className="container mx-auto ">
         <h2 className="text-3xl md:text-4xl font-bold text-center font-montserrat mb-16 text-[#F0E3DE] opacity-75 ">
-          What Can You Host On Spin A Cloud?
+          What Can You Host On Spin&apos;A&apos;Cloud&trade;?
         </h2>
         
         <div className="grid md:grid-cols-2 gap-4">
           {features.map((feature, idx) => (
-            <div key={idx} className="flex gap-4 p-6 rounded-xl bg-white/5 border-none hover:bg-white/10 transition-colors">
+            <div key={idx} className="flex gap-4 p-6 rounded-xl bg-[#282828] border-none hover:bg-neutral-700/80 transition-colors">
               <div className="mt-1 flex-shrink-0 text-primary">
                 <CheckSquare className="w-6 h-6" />
               </div>

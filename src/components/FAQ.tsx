@@ -10,15 +10,15 @@ const faqs = [
     answer: 'Cloud hosting runs your website or application across a network of interconnected virtual servers, rather than on a single physical machine. If one server fails, your workload shifts automatically to another - keeping you online. It also means resources can scale up or down based on demand.'
   },
   {
-    question: 'Is SpinACloud good for beginners?',
-    answer: 'Yes, SpinACloud is designed to be intuitive for beginners while offering advanced capabilities for seasoned developers.'
+    question: "Is Spin'A'Cloud™ good for beginners?",
+    answer: "Yes, Spin'A'Cloud™ is designed to be intuitive for beginners while offering advanced capabilities for seasoned developers."
   },
   {
     question: 'How does hourly billing work?',
     answer: 'You are only charged for the exact number of hours your resources are active. If you delete a resource halfway through the month, you only pay for the time it existed.'
   },
   {
-    question: 'Where are SpinACloud\'s data centres located?',
+    question: "Where are Spin'A'Cloud™'s data centres located?",
     answer: 'Our main data centres are located across major hubs in India to ensure the lowest latency and highest performance for Indian visitors.'
   }
 ];
@@ -101,8 +101,8 @@ export default function FAQ() {
             return (
               <div 
                 key={idx} 
-                className={`border rounded-lg overflow-hidden transition-colors ${
-                  isOpen ? 'bg-white/10 border-white/20' : 'bg-transparent border-white/10 hover:border-white/20'
+                className={`rounded-lg overflow-hidden transition-all duration-300 ease-in-out ${
+                  isOpen ? 'bg-[#383838] border-0' : 'border border-gray-700/40 bg-[#0d0d0d]'
                 }`}
               >
                 <button
@@ -111,9 +111,9 @@ export default function FAQ() {
                 >
                   <span className="font-semibold text-white">{faq.question}</span>
                   {isOpen ? (
-                    <Minus className="w-5 h-5 text-neutral-400 flex-shrink-0" />
+                    <Minus className="w-5 h-5 text-neutral-400 shrink-0" />
                   ) : (
-                    <Plus className="w-5 h-5 text-neutral-400 flex-shrink-0" />
+                    <Plus className="w-5 h-5 text-neutral-400 shrink-0" />
                   )}
                 </button>
                 

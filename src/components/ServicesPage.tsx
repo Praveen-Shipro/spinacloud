@@ -27,6 +27,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import DynamicAmbientGlow from '@/components/DynamicAmbientGlow';
 import { div } from 'three/tsl';
+import cloud1 from '@/assets/images/cloud1.svg'
+import cloud2 from '@/assets/images/cloud2.svg'
+import bill from '@/assets/images/bill.svg'
+import bill2 from '@/assets/images/bill2.svg'
+import uptime from '@/assets/images/uptime-icon.svg'
+import support247 from '@/assets/images/24x7.svg'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -61,7 +67,12 @@ function HorizontalProvisionScroll({
       const viewport = viewportRef.current;
 
       const getScrollAmount = () => {
-        return Math.max(0, track.scrollWidth - viewport.clientWidth);
+        const cards = track.children;
+        const lastCard = cards[cards.length - 1] as HTMLElement | undefined;
+        if (!lastCard) return 0;
+        const lastCardCenter = lastCard.offsetLeft + lastCard.offsetWidth / 2;
+        const viewportCenter = viewport.clientWidth / 2;
+        return Math.max(0, lastCardCenter - viewportCenter);
       };
 
       const tween = gsap.fromTo(
@@ -108,11 +119,11 @@ function HorizontalProvisionScroll({
     return (
       <section
         ref={sectionRef}
-        className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-white/10 z-10 bg-slate-800"
+        className="relative z-[45] w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-white/10 bg-slate-800"
       >
-        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl w-full px-4 ${containerSpacing}`}>
-          {/* Header with scroll progress indicator */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 md:mb-12 gap-4">
+        {/* Header with scroll progress indicator */}
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl w-full px-4 mb-8 md:mb-12 ${containerSpacing}`}>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-orange-400 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 inline-block mb-3">
                 Infrastructure Breakdown
@@ -133,44 +144,44 @@ function HorizontalProvisionScroll({
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Horizontal Cards Viewport */}
-          <div ref={viewportRef} className="w-full overflow-hidden">
-            <div
-              ref={trackRef}
-              className="flex gap-4 md:gap-6 will-change-transform pr-12 md:pr-24"
-            >
-              {items.map((item, idx) => {
-                const IconComp = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 p-8 rounded-2xl bg-transparent border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 group flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-6">
-                        <span className="text-3xl font-bold font-mono text-orange-400 group-hover:scale-105 transition-transform">
-                          {item.num}
-                        </span>
-                        <div className="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center">
-                          <IconComp size={20} />
-                        </div>
+        {/* Horizontal Cards Viewport - Full Screen Width */}
+        <div ref={viewportRef} className="w-full overflow-hidden">
+          <div
+            ref={trackRef}
+            className="flex gap-4 md:gap-6 will-change-transform px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24"
+          >
+            {items.map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <div
+                  key={idx}
+                  className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 p-8 rounded-2xl bg-slate-900/60 border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="text-3xl font-bold font-mono text-orange-400 group-hover:scale-105 transition-transform">
+                        {item.num}
+                      </span>
+                      <div className="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center">
+                        <IconComp size={20} />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-orange-300 transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-neutral-300 text-sm leading-relaxed">
-                        {item.desc}
-                      </p>
                     </div>
-                    <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-neutral-400">
-                      <span>Provisioned in IXG Zone</span>
-                      <span className="text-emerald-400 font-medium">Instant Spin Up</span>
-                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-orange-300 transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-neutral-300 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
-                );
-              })}
-            </div>
+                  <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-neutral-400">
+                    <span>Provisioned in IXG Zone</span>
+                    <span className="text-emerald-400 font-medium">Instant Spin Up</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -181,11 +192,11 @@ function HorizontalProvisionScroll({
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-gray-300/40 px-4 bg-[#222222]"
+      className="relative z-[45] w-full min-h-[calc(100vh-6rem)] py-12 md:py-16 flex flex-col justify-center overflow-hidden border-b border-gray-300/40 bg-[#222222]"
     >
-      <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl w-full ${containerSpacing}`}>
-        {/* Header with progress */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 md:mb-12 gap-4">
+      {/* Header with progress */}
+      <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl w-full px-4 mb-8 md:mb-12 ${containerSpacing}`}>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <h2 className="text-xl md:text-3xl font-bold font-montserrat text-[#F0E3DE] opacity-90">
               What we provision for you:
@@ -203,44 +214,44 @@ function HorizontalProvisionScroll({
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Horizontal Track Viewport */}
-        <div ref={viewportRef} className="w-full overflow-hidden">
-          <div
-            ref={trackRef}
-            className="flex gap-4 md:gap-6 will-change-transform pr-12 md:pr-24"
-          >
-            {items.map((item, idx) => {
-              const IconComp = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 border border-gray-300/40 p-8 rounded-xl bg-transparent flex flex-col justify-between hover:border-primary/60 transition-colors"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <span className="text-3xl font-bold font-montserrat text-primary block">
-                        {item.num}
-                      </span>
-                      <div className="w-10 h-10 rounded-lg border border-primary/40 flex items-center justify-center text-primary">
-                        <IconComp size={20} />
-                      </div>
+      {/* Horizontal Track Viewport - Full Screen Width */}
+      <div ref={viewportRef} className="w-full overflow-hidden">
+        <div
+          ref={trackRef}
+          className="flex gap-4 md:gap-6 will-change-transform px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24"
+        >
+          {items.map((item, idx) => {
+            const IconComp = item.icon;
+            return (
+              <div
+                key={idx}
+                className="w-[82vw] sm:w-[340px] md:w-[380px] lg:w-[420px] shrink-0 border border-gray-300/40 p-8 rounded-xl bg-[#181818] flex flex-col justify-between hover:border-primary/60 transition-colors"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-3xl font-bold font-montserrat text-primary block">
+                      {item.num}
+                    </span>
+                    <div className="w-10 h-10 rounded-lg border border-primary/40 flex items-center justify-center text-primary">
+                      <IconComp size={20} />
                     </div>
-                    <h3 className="text-xl font-bold font-montserrat text-white mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-[#F0E3DE] font-nunito font-extralight text-sm opacity-80 leading-relaxed">
-                      {item.desc}
-                    </p>
                   </div>
-                  <div className="mt-8 pt-4 border-t border-gray-800 flex items-center justify-between text-xs text-neutral-400 font-mono">
-                    <span>IXG DATA CENTRE</span>
-                    <span className="text-primary">100% INDIAN INFRA</span>
-                  </div>
+                  <h3 className="text-xl font-bold font-montserrat text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#F0E3DE] font-nunito font-extralight text-sm opacity-80 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
+                <div className="mt-8 pt-4 border-t border-gray-800 flex items-center justify-between text-xs text-neutral-400 font-mono">
+                  <span>IXG DATA CENTRE</span>
+                  <span className="text-primary">100% INDIAN INFRA</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -256,7 +267,7 @@ export default function ServicesPage() {
     {
       num: '01',
       title: 'Virtual Machines',
-      desc: 'Four compute types for every workload: Basic, General Purpose, CPU Optimised, and Memory Optimised. All VMs include unlimited bandwidth and run on Indian infrastructure.',
+      desc: 'Four compute types for every workload: Basic, General Purpose, CPU Optimised, and Memory Optimised. All VMs include unmetered bandwidth and run on Indian infrastructure.',
       icon: Server,
     },
     {
@@ -288,13 +299,13 @@ export default function ServicesPage() {
     {
       num: '01',
       title: 'Automated Setup & Provisioning',
-      desc: 'A single command provisions a fully hardened, production-ready WordPress environment on your SpinACloud VM. OpenLiteSpeed web server, MariaDB, PHP, Redis caching, SSL, firewall configuration - all set up, all secured, automatically.',
+      desc: "A single command provisions a fully hardened, production-ready WordPress environment on your Spin'A'Cloud™ VM. OpenLiteSpeed web server, MariaDB, PHP, Redis caching, SSL, firewall configuration - all set up, all secured, automatically.",
       icon: Server,
     },
     {
       num: '02',
       title: 'Site Migration',
-      desc: 'Moving an existing WordPress site to SpinACloud? WP Server Setup handles the migration - files, database, configuration - cleanly and without downtime.',
+      desc: "Moving an existing WordPress site to Spin'A'Cloud™? WP Server Setup handles the migration - files, database, configuration - cleanly and without downtime.",
       icon: HardDrive,
     },
     {
@@ -338,32 +349,32 @@ export default function ServicesPage() {
 
   const planInclusions = [
     {
-      icon: Infinity,
-      title: 'Unlimited bandwidth - no data transfer charges',
+      icon: cloud1,
+      title: 'Unmetered bandwidth - no data transfer charges',
       desc: 'Zero hidden egress fees or traffic transfer limits.',
     },
     {
-      icon: Activity,
+      icon: uptime,
       title: '99.9% uptime SLA',
       desc: 'Enterprise reliability backed by redundant power and networking.',
     },
     {
-      icon: Server,
+      icon: cloud2,
       title: 'Indian data centres - IXG-Belagavi zone',
       desc: 'Ultra-low latency routing directly across Indian networks.',
     },
     {
-      icon: PhoneCall,
+      icon: support247,
       title: '24×7 India-based support',
       desc: 'Local engineering experts available around the clock.',
     },
     {
-      icon: Clock,
+      icon: bill,
       title: 'Hourly billing - pay only for active hours',
       desc: 'Granular pay-as-you-go pricing for maximum cost efficiency.',
     },
     {
-      icon: ShieldCheck,
+      icon: bill2,
       title: 'No lock-in contracts',
       desc: 'Cancel or scale your cloud servers anytime instantly.',
     },
@@ -401,13 +412,13 @@ export default function ServicesPage() {
             </h1>
             <div className="max-w-4xl space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed mb-10">
               <p>
-                SpinACloud does two things exceptionally well - and we believe in doing fewer things better rather than more things poorly.
+                Spin&apos;A&apos;Cloud&trade; does two things exceptionally well - and we believe in doing fewer things better rather than more things poorly.
               </p>
               <p className="text-neutral-400">
-                Whether you need raw cloud infrastructure to run any application, or a fully managed WordPress environment that handles itself, SpinACloud has a service built around your actual need.
+                Whether you need raw cloud infrastructure to run any application, or a fully managed WordPress environment that handles itself, Spin&apos;A&apos;Cloud&trade; has a service built around your actual need.
               </p>
               <p className="text-neutral-400">
-                Both services run on Indian data centres, include unlimited bandwidth, bill by the hour, and come with 24×7 local support.
+                Both services run on Indian data centres, include unmetered bandwidth, bill by the hour, and come with 24×7 local support.
               </p>
             </div>
 
@@ -452,10 +463,10 @@ export default function ServicesPage() {
                   </h2>
                   <div className="space-y-4 text-neutral-300 text-base md:text-lg leading-relaxed">
                     <p>
-                      SpinACloud provisions and manages the underlying cloud infrastructure your websites, applications, databases, and services need to run - reliably, at scale, and at a price that makes sense for Indian businesses.
+                      Spin&apos;A&apos;Cloud&trade; provisions and manages the underlying cloud infrastructure your websites, applications, databases, and services need to run - reliably, at scale, and at a price that makes sense for Indian businesses.
                     </p>
                     <p className="text-neutral-400">
-                      This is not shared hosting. This is not a VPS tied to a single physical machine. SpinACloud&apos;s cloud infrastructure distributes your workload across a resilient network of servers with Indian data centres at its core - so your applications stay online, stay fast, and scale when your business demands it.
+                      This is not shared hosting. This is not a VPS tied to a single physical machine. Spin&apos;A&apos;Cloud&trade;&apos;s cloud infrastructure distributes your workload across a resilient network of servers with Indian data centres at its core - so your applications stay online, stay fast, and scale when your business demands it.
                     </p>
                   </div>
                 </div>
@@ -531,7 +542,7 @@ export default function ServicesPage() {
                       Built on top of our enterprise Indian cloud infrastructure, our Managed WordPress hosting gives you automated updates, one-click staging, server-level caching (Redis & NGINX), and daily automated backups.
                     </p>
                     <p className="text-neutral-400">
-                      No server administration needed. Focus on building content and growing your business while SpinACloud ensures lightning-fast load times for Indian visitors.
+                      No server administration needed. Focus on building content and growing your business while Spin&apos;A&apos;Cloud&trade; ensures lightning-fast load times for Indian visitors.
                     </p>
                   </div>
                 </div>
@@ -608,44 +619,38 @@ export default function ServicesPage() {
 
             {/* Desktop 3-Column Grid */}
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {planInclusions.map((item, idx) => {
-                const IconComponent = item.icon;
-                return (
+              {planInclusions.map((item, idx) => (
                   <div
                     key={idx}
                     className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center mb-6">
-                      <IconComponent size={24} />
+                    <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6">
+                      <Image src={item.icon} alt={item.title} width={24} height={24} />
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
                       <p className="text-sm text-neutral-400 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
-                );
-              })}
+              ))}
             </div>
 
             {/* Mobile Horizontally Scrollable Cards */}
             <div className="flex md:hidden gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4">
-              {planInclusions.map((item, idx) => {
-                const IconComponent = item.icon;
-                return (
+              {planInclusions.map((item, idx) => (
                   <div
                     key={idx}
                     className="snap-start shrink-0 w-[280px] p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-xl flex flex-col justify-between"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center mb-6">
-                      <IconComponent size={24} />
+                    <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6">
+                      <Image src={item.icon} alt={item.title} width={24} height={24} />
                     </div>
                     <div>
                       <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
                       <p className="text-xs text-neutral-400 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
-                );
-              })}
+              ))}
             </div>
           </div>
         </section>
@@ -658,7 +663,7 @@ export default function ServicesPage() {
             </h2>
 
             <div className="space-y-6">
-              <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300">
+              <div className="p-8 rounded-2xl bg-white/[0.02] border border-y-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                   If you want to host WordPress
                 </h3>
@@ -667,21 +672,21 @@ export default function ServicesPage() {
                 </p>
               </div>
 
-              <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300">
+              <div className="p-8 rounded-2xl bg-white/[0.02] border border-y-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                   If you want to host anything else
                 </h3>
                 <p className="text-neutral-300 leading-relaxed">
-                  a SaaS app, an API, a database, a mobile backend, a custom application — choose <strong className="text-white">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unlimited bandwidth.
+                  a SaaS app, an API, a database, a mobile backend, a custom application — choose <strong className="text-white">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unmetered bandwidth.
                 </p>
               </div>
 
-              <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300">
+              <div className="p-8 rounded-2xl bg-white/[0.02] border border-y-white/10 hover:border-orange-500/30 backdrop-blur-xl transition-all duration-300">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                   If you need multi-server or custom clusters
                 </h3>
                 <p className="text-neutral-300 leading-relaxed">
-                  custom database clustering, private networking, or load-balanced infrastructure — choose <strong className="text-white">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unlimited bandwidth.
+                  custom database clustering, private networking, or load-balanced infrastructure — choose <strong className="text-white">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unmetered bandwidth.
                 </p>
               </div>
             </div>
@@ -717,7 +722,7 @@ export default function ServicesPage() {
 
             {/* Mobile / Social Follow Card */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/10 text-center max-w-xl mx-auto backdrop-blur-xl">
-              <h3 className="text-xl font-bold text-white mb-2">Follow Spin A Cloud</h3>
+              <h3 className="text-xl font-bold text-white mb-2">Follow Spin&apos;A&apos;Cloud&trade;</h3>
               <p className="text-neutral-400 text-sm mb-6">
                 Stay Updated With Hosting Tips, Downtime Alerts, And Product News:
               </p>
@@ -749,12 +754,12 @@ export default function ServicesPage() {
     <div id="services" className="relative">
       <DynamicAmbientGlow />
       {/* Hero Section */}
-      <section className="px-4 pt-12 md:pt-24 relative overflow-hidden bg-amber-900/10">
+      <section className="px-4 py-12 md:py-24 relative overflow-hidden bg-amber-900/10">
         {/* Ambient Glows */}
         {/* <div className="absolute top-0 -left-16 w-[600px] h-[600px]  rounded-full blur-[120px] pointer-events-none animate-pulse duration-1000" /> */}
         <div className="absolute bottom-0 -right-16 w-[600px] h-[600px] bg-[#FF6600]/[0.15] rounded-full blur-[120px] pointer-events-none" />
 
-        <div className={`${containerSpacing} container mx-auto max-w-6xl 2xl:max-w-7xl pb-12 border-b border-gray-300/40 relative z-10`}>
+        <div className={`${containerSpacing} container mx-auto max-w-6xl 2xl:max-w-7xl relative z-10`}>
           <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-lg">
             Services
           </h2>
@@ -764,13 +769,13 @@ export default function ServicesPage() {
           </h1>
           <div className="space-y-4 max-w-4xl">
             <p className="text-[#FFFFFF] opacity-75 font-nunito font-extralight text-sm md:text-base leading-relaxed">
-              SpinACloud does two things exceptionally well - and we believe in doing fewer things better rather than more things poorly.
+              Spin&apos;A&apos;Cloud&trade; does two things exceptionally well - and we believe in doing fewer things better rather than more things poorly.
             </p>
             <p className="text-[#FFFFFF] opacity-75 font-nunito font-extralight text-sm md:text-base leading-relaxed">
-              Whether you need raw cloud infrastructure to run any application, or a fully managed WordPress environment that handles itself, SpinACloud has a service built around your actual need.
+              Whether you need raw cloud infrastructure to run any application, or a fully managed WordPress environment that handles itself, Spin&apos;A&apos;Cloud&trade; has a service built around your actual need.
             </p>
             <p className="text-[#FFFFFF] opacity-75 font-nunito font-extralight text-sm md:text-base leading-relaxed">
-              Both services run on Indian data centres, include unlimited bandwidth, bill by the hour, and come with 24×7 local support.
+              Both services run on Indian data centres, include unmetered bandwidth, bill by the hour, and come with 24×7 local support.
             </p>
           </div>
 
@@ -783,44 +788,53 @@ export default function ServicesPage() {
 
         <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
           {/* Service Toggle Pills */}
-          <div className="flex flex-wrap gap-4 justify-center items-center mb-15">
-            <button
-              onClick={() => setActiveTab('service1')}
-              className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${activeTab === 'service1'
-                  ? 'bg-primary text-white shadow-md'
-                  : 'bg-[#141414] border border-gray-700/60 text-neutral-300 hover:text-white'
-                }`}
-            >
-              <Cloud size={16} />
-              <span className='font-montserrat'>Service-1</span>
-            </button>
+          <div className="flex justify-center items-center mb-15">
+            <div className="relative inline-flex items-center bg-[#222222] p-1.5 rounded-full border border-gray-700/60 shadow-inner">
+              {/* Sliding Active Pill */}
+              <div 
+                className={`absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] bg-primary rounded-full shadow-md transition-transform duration-200 ease-out transform-gpu will-change-transform pointer-events-none ${
+                  activeTab === 'service1' ? 'translate-x-0' : 'translate-x-full'
+                }`} 
+              />
 
-            <button
-              onClick={() => setActiveTab('service2')}
-              className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${activeTab === 'service2'
-                  ? 'bg-primary text-white shadow-md'
-                  : 'bg-[#141414] border border-gray-700/60 text-neutral-300 hover:text-white'
+              <button
+                type="button"
+                onClick={() => setActiveTab('service1')}
+                className={`relative z-10 flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 min-w-[140px] md:min-w-[160px] cursor-pointer select-none ${
+                  activeTab === 'service1' ? 'text-white' : 'text-neutral-400 hover:text-white'
                 }`}
-            >
-              <span className="w-4 h-4 rounded-full border border-current flex items-center justify-center text-[10px] font-bold">W</span>
-              <span>Service-2</span>
-            </button>
+              >
+                <Cloud size={16} />
+                <span className="font-montserrat">Service-1</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab('service2')}
+                className={`relative z-10 flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 min-w-[140px] md:min-w-[160px] cursor-pointer select-none ${
+                  activeTab === 'service2' ? 'text-white' : 'text-neutral-400 hover:text-white'
+                }`}
+              >
+                <span className="w-4 h-4 rounded-full border border-current flex items-center justify-center text-[10px] font-bold">W</span>
+                <span className="font-montserrat">Service-2</span>
+              </button>
+            </div>
           </div>
           {activeTab === 'service1' ? (
             <div className="grid md:grid-cols-12 gap-12 items-center">
               <div className="md:col-span-7 space-y-6">
-                <h3 className="text-primary font-semibold tracking-wider uppercase font-inter text-sm">
+                <h3 className="text-primary font-semibold tracking-wider uppercase font-inter text-sm mb-4">
                   Service 1: Cloud Infrastructure Provisioning
                 </h3>
-                <h2 className="text-2xl md:text-4xl font-bold text-[#F0E3DE] font-montserrat opacity-90 leading-tight">
+                <h2 className="text-md md:text-2xl font-bold text-[#F0E3DE] font-montserrat opacity-90 leading-tight">
                   The cloud your application runs on.
                 </h2>
                 <div className="space-y-4">
                   <p className="text-[#F0E3DE] font-nunito font-extralight text-base md:text-lg leading-relaxed">
-                    SpinACloud provisions and manages the underlying cloud infrastructure your websites, applications, databases, and services need to run - reliably, at scale, and at a price that makes sense for Indian businesses.
+                    Spin&apos;A&apos;Cloud&trade; provisions and manages the underlying cloud infrastructure your websites, applications, databases, and services need to run - reliably, at scale, and at a price that makes sense for Indian businesses.
                   </p>
                   <p className="text-[#F0E3DE] font-nunito font-extralight text-base md:text-lg leading-relaxed">
-                    This is not shared hosting. This is not a VPS tied to a single physical machine. SpinACloud&apos;s cloud infrastructure distributes your workload across a resilient network of servers with Indian data centres at its core - so your applications stay online, stay fast, and scale when your business demands it.
+                    This is not shared hosting. This is not a VPS tied to a single physical machine. Spin&apos;A&apos;Cloud&trade;&apos;s cloud infrastructure distributes your workload across a resilient network of servers with Indian data centres at its core - so your applications stay online, stay fast, and scale when your business demands it.
                   </p>
                 </div>
               </div>
@@ -844,7 +858,7 @@ export default function ServicesPage() {
                     ))}
                   </div>
                   <div className="mt-4 pt-3 border-t border-gray-700/50 flex justify-between text-xs text-neutral-400">
-                    <span>Unlimited Bandwidth</span>
+                    <span>Unmetered Bandwidth</span>
                     <span>100% Indian Infra</span>
                   </div>
                 </div>
@@ -853,10 +867,10 @@ export default function ServicesPage() {
           ) : (
             <div className="grid md:grid-cols-12 gap-12 items-center">
               <div className="md:col-span-7 space-y-6">
-                <h3 className="text-primary font-semibold tracking-wider uppercase font-inter text-sm">
+                <h3 className="text-primary font-semibold tracking-wider uppercase font-inter text-sm mb-4">
                   Service 2: Managed WordPress Hosting Powered by WP Server Setup
                 </h3>
-                <h2 className="text-2xl md:text-4xl font-bold text-[#F0E3DE] font-montserrat opacity-90 leading-tight">
+                <h2 className="text-md md:text-2xl font-bold text-[#F0E3DE] font-montserrat opacity-90 leading-tight">
                   WordPress hosting that manages itself.
                 </h2>
                 <div className="space-y-4">
@@ -864,7 +878,7 @@ export default function ServicesPage() {
                     Built on top of our enterprise Indian cloud infrastructure, our Managed WordPress hosting gives you automated updates, one-click staging, server-level caching (Redis & NGINX), and daily automated backups.
                   </p>
                   <p className="text-[#F0E3DE] font-nunito font-extralight text-base md:text-lg leading-relaxed">
-                    No server administration needed. Focus on building content and growing your business while SpinACloud ensures lightning-fast load times for Indian visitors.
+                    No server administration needed. Focus on building content and growing your business while Spin&apos;A&apos;Cloud&trade; ensures lightning-fast load times for Indian visitors.
                   </p>
                 </div>
               </div>
@@ -903,11 +917,11 @@ export default function ServicesPage() {
       />
 
       {/* Who this service is for */}
-      <section className="px-4">
-        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
+      <section className="px-4 bg-[#0d0d0d] border-b border-gray-300/40">
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 ${containerSpacing}`}>
           {activeTab === 'service1' ? (
-            <div className="border border-gray-300/40 rounded-xl p-4 md:p-12 bg-[#0d0d0d]">
-            <h2 className="text-xl md:text-2xl font-bold font-montserrat text-[#FFFFFF] mb-6">
+            <div className=" p-4 md:p-12 ">
+            <h2 className="text-xl md:text-2xl font-semibold font-montserrat text-[#FFFFFF] mb-6">
               Who this service is for:
             </h2>
             <p className="text-[#F0E3DE] font-nunito font-extralight text-base md:text-lg leading-relaxed max-w-4xl mb-8 opacity-80">
@@ -916,34 +930,35 @@ export default function ServicesPage() {
               Agencies managing multiple client environments. E-commerce businesses needing traffic spike resilience. 
               SaaS companies requiring elastic compute. Enterprises that need high-availability Indian cloud hosting for compliance and performance.
             </p>
-
-            <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-              {Array.from({ length: 3 }).map((_, colIndex) => (
-                <div key={colIndex} className="w-[85%] shrink-0 sm:w-[320px] md:w-auto snap-start md:snap-align-none flex flex-col gap-4">
-                  {targetAudiences.slice(colIndex * 2, colIndex * 2 + 2).map((aud, i) => (
-                    <div key={i} className="p-4 rounded-lg bg-black/60 border border-gray-800/80 flex items-start gap-3 h-full">
-                      <CheckSquare size={18} className="text-primary mt-0.5 shrink-0" />
-                      <div>
-                        <h4 className="text-sm font-semibold font-montserrat text-white mb-1">{aud.name}</h4>
-                        <p className="text-xs text-[#F0E3DE] font-nunito font-extralight opacity-75">{aud.desc}</p>
-                      </div>
-                    </div>
-                  ))}
+            <h2 className="text-xl md:text-2xl font-semibold font-montserrat text-[#FFFFFF] mb-6 mt-14 md:mt-20 md:mb-10">
+              What's included on every plan:
+            </h2>
+            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              {planInclusions.map((item, idx) => (
+                <div key={idx} className="w-[85%] shrink-0 sm:w-[320px] md:w-auto snap-start md:snap-align-none p-4 rounded-lg bg-black/60 border border-gray-800/80 flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Image src={item.icon} alt={item.title} width={18} height={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold font-montserrat text-white mb-1">{item.title}</h4>
+                    <p className="text-xs text-[#F0E3DE] font-nunito font-extralight opacity-75">{item.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>) : (
-              <div className='flex flex-col md:flex-row justify-around gap-3 md:gap-4 lg:gap-8'>
-                  <div className='flex flex-col gap-3 p-5 rounded-2xl w-full md:w-1/2 bg-[#D85803]'>
-                      <h2>WP Server Setup is available  free of charge</h2>
-                      <p> to all SpinACloud customers who choose to host WordPress on our infrastructure. It is not available as a standalone product - it is built for SpinACloud servers and works best on our NVMe-backed, OpenLiteSpeed-optimised VM stack.</p>
+              <div className='flex flex-col md:flex-row justify-around gap-3 md:gap-4 lg:gap-8 '>
+                  <div className='flex flex-col gap-3 p-5 md:p-8 rounded-2xl w-full md:w-1/2 bg-[#D85803]'>
+                      <h2 className='text-xl md:text-2xl font-semibold font-montserrat'>WP Server Setup is available free of charge</h2>
+                      <p className='text-sm md:text-base font-nunito font-thin'> to all Spin&apos;A&apos;Cloud&trade; customers who choose to host WordPress on our infrastructure. It is not available as a standalone product - it is built for Spin&apos;A&apos;Cloud&trade; servers and works best on our NVMe-backed, OpenLiteSpeed-optimised VM stack.</p>
                   </div>
 
-                  <div className='flex flex-col gap-3 p-5 rounded-2xl w-full md:w-1/2 bg-[#D85803]'>
-                      <h2>Who this service is for:</h2>
-                      <p>Business owners who want WordPress to just work - without managing servers. Agencies and freelancers hosting multiple client WordPress sites who need automation, isolation, and reliability. 
-                        Developers running high-traffic or multi-tenant WordPress installations who want a hardened, production-grade setup without building it from scratch. Enterprises running WordPress as their 
-                        CMS who need uptime monitoring, automated backups, and security scanning built in.</p>
+                  <div className='flex flex-col gap-3 p-5 md:p-8 rounded-2xl w-full md:w-1/2 bg-[#D85803]'>
+                      <h2 className='text-xl md:text-2xl font-semibold font-montserrat'>Who this service is for:</h2>
+                      <p className='text-sm md:text-base font-nunito font-thin'>Business owners who want WordPress to just work - without managing servers. Agencies and freelancers hosting multiple client WordPress sites who 
+                        need automation, isolation, and reliability. 
+                        Developers running high-traffic or multi-tenant WordPress installations who want a hardened, production-grade setup without building it from scratch. 
+                        Enterprises running WordPress as their CMS who need uptime monitoring, automated backups, and security scanning built in.</p>
                   </div>
               </div>
           )}
@@ -951,37 +966,37 @@ export default function ServicesPage() {
       </section>
 
       {/* Which service do I need? */}
-      <section className="px-4">
-        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 border-b border-gray-300/40 ${containerSpacing}`}>
-          <h2 className="text-2xl md:text-4xl font-bold font-montserrat text-[#F0E3DE] mb-12 opacity-90">
+      <section className="px-4 bg-[#222222]">
+        <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-12 md:py-24 ${containerSpacing}`}>
+          <h2 className="text-xl md:text-2xl text-center font-bold font-montserrat text-[#F0E3DE] mb-12 opacity-90">
             Which service do I need?
           </h2>
-
-          <div className="space-y-6">
-            <div className="border border-gray-300/40 rounded-xl p-6 md:p-8 bg-[#0d0d0d]">
-              <h3 className="text-xl font-bold font-montserrat text-white mb-3">
+          <hr />
+          <div className="space-y-6 mt-6">
+            <div className="rounded-xl p-6 md:p-8 ">
+              <h3 className="text-xl font-bold font-courier-prime text-white mb-3">
                 If you want to host WordPress
               </h3>
-              <p className="text-[#F0E3DE] font-nunito font-extralight text-base opacity-80 leading-relaxed">
+              <p className="text-[#F0E3DE] font-montserrat font-extralight text-base opacity-80 leading-relaxed">
                 choose <strong className="text-white font-medium">Managed WordPress Hosting</strong>. You get the cloud infrastructure plus WP Server Setup at no extra cost.
               </p>
             </div>
-
-            <div className="border border-gray-300/40 rounded-xl p-6 md:p-8 bg-[#0d0d0d]">
-              <h3 className="text-xl font-bold font-montserrat text-white mb-3">
+            <hr />
+            <div className="rounded-xl p-6 md:p-8 ">
+              <h3 className="text-xl font-bold font-courier-prime text-white mb-3">
                 If you want to host anything else
               </h3>
-              <p className="text-[#F0E3DE] font-nunito font-extralight text-base opacity-80 leading-relaxed">
-                a SaaS app, an API, a database, a mobile backend, a custom application — choose <strong className="text-white font-medium">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unlimited bandwidth.
+              <p className="text-[#F0E3DE] font-montserrat font-extralight text-base opacity-80 leading-relaxed">
+                a SaaS app, an API, a database, a mobile backend, a custom application — choose <strong className="text-white font-medium">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unmetered bandwidth.
               </p>
             </div>
-
-            <div className="border border-gray-300/40 rounded-xl p-6 md:p-8 bg-[#0d0d0d]">
-              <h3 className="text-xl font-bold font-montserrat text-white mb-3">
+            <hr />
+            <div className="rounded-xl p-6 md:p-8 ">
+              <h3 className="text-xl font-bold font-courier-prime text-white mb-3">
                 If you need multi-server or custom clusters
               </h3>
-              <p className="text-[#F0E3DE] font-nunito font-extralight text-base opacity-80 leading-relaxed">
-                custom database clustering, private networking, or load-balanced infrastructure — choose <strong className="text-white font-medium">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unlimited bandwidth.
+              <p className="text-[#F0E3DE] font-montserrat font-extralight text-base opacity-80 leading-relaxed">
+                custom database clustering, private networking, or load-balanced infrastructure — choose <strong className="text-white font-medium">Cloud Infrastructure Provisioning</strong>. Full control, full root access, unmetered bandwidth.
               </p>
             </div>
           </div>
@@ -993,22 +1008,22 @@ export default function ServicesPage() {
         <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl space-y-12 ${containerSpacing}`}>
           {/* Orange Gradient CTA Banner */}
           <div className="rounded-3xl bg-gradient-to-r from-[#FF6600]/50 to-[#FF9752] p-8 md:p-12 text-center text-white shadow-xl shadow-orange-500/10">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-montserrat mb-4 tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold font-montserrat mb-4 tracking-tight">
               Not Sure Which Service You Need?
             </h2>
-            <p className="text-white/95 text-sm md:text-base max-w-2xl mx-auto mb-8 font-nunito font-normal">
+            <p className="text-white/95 text-base md:text-xl mx-auto mb-8 font-nunito font-thin">
               Talk To Our Team — We&apos;ll Recommend The Right Setup For Your Website And Budget.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="px-8 py-3 rounded-full bg-black text-white font-montserrat font-semibold hover:bg-neutral-900 transition-colors text-sm"
+                className="px-8 py-3 rounded-full bg-black text-white font-montserrat font-semibold hover:bg-neutral-900 transition-colors text-base"
               >
                 Contact Us
               </Link>
               <Link
                 href="/#pricing"
-                className="px-8 py-3 rounded-full bg-white text-black font-montserrat font-semibold hover:bg-neutral-100 transition-colors text-sm"
+                className="px-8 py-3 rounded-full bg-white text-black font-montserrat font-semibold hover:bg-neutral-100 transition-colors text-base"
               >
                 View Plans
               </Link>

@@ -18,7 +18,7 @@ export default function Benefits() {
               Local Excellence
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white">
-              Why <span className="text-primary">Spin A Cloud</span>
+              Why <span className="text-primary">Spin&apos;A&apos;Cloud&trade;</span>
             </h2>
           </div>
 
@@ -55,7 +55,7 @@ export default function Benefits() {
                 <h3 className="text-xl font-bold text-white">Bills you can actually predict</h3>
               </div>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                AWS invoices are famously cryptic. SpinACloud features itemised hourly billing with no egress surprises or hidden transfer markups.
+                AWS invoices are famously cryptic. Spin&apos;A&apos;Cloud&trade; features itemised hourly billing with no egress surprises or hidden transfer markups.
               </p>
             </div>
 
@@ -76,10 +76,18 @@ export default function Benefits() {
 
   // Design 1 Figma Classic Variant
   return (
-    <section className=" px-4 relative">
-      <div className="container mx-auto max-w-6xl 2xl:max-w-7xl border-b border-gray-300/40 py-12 md:py-24">
+    <section className="px-4 relative overflow-hidden bg-neutral-900/40">
+      {/* Ambient background glows for blur effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary/[0.08] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -top-24 left-1/4 w-[400px] h-[300px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-24 right-1/4 w-[400px] h-[300px] bg-primary/[0.05] rounded-full blur-[120px] pointer-events-none" />
+
+      {/* Frosted glass backdrop blur layer */}
+      <div className="absolute inset-0 backdrop-blur-2xl bg-black/20 pointer-events-none" />
+
+      <div className="container mx-auto max-w-6xl 2xl:max-w-7xl border-b border-gray-300/40 py-12 md:py-24 relative z-10">
         <h2 className="text-4xl font-bold text-center font-montserrat mb-16 text-[#F0E3DE] opacity-75">
-          Why Spin A Cloud
+          Why Spin&apos;A&apos;Cloud&trade;
         </h2>
 
         {/* Desktop: X-Y Axis Grid Container (md and above) */}
@@ -118,7 +126,7 @@ export default function Benefits() {
                 Bills you can actually predict
               </h3>
               <p className="text-neutral-400 leading-relaxed">
-                AWS bills are famously complex. SpinACloud&apos;s hourly billing is transparent and itemised. You know exactly what you are paying for before the invoice arrives.
+                AWS bills are famously complex. Spin&apos;A&apos;Cloud&trade;&apos;s hourly billing is transparent and itemised. You know exactly what you are paying for before the invoice arrives.
               </p>
             </div>
 
@@ -157,7 +165,7 @@ export default function Benefits() {
               Bills you can actually predict
             </h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
-              AWS bills are famously complex. SpinACloud&apos;s hourly billing is transparent and itemised. You know exactly what you are paying for before the invoice arrives.
+              AWS bills are famously complex. Spin&apos;A&apos;Cloud&trade;&apos;s hourly billing is transparent and itemised. You know exactly what you are paying for before the invoice arrives.
             </p>
           </div>
           <div className="snap-start shrink-0 w-[280px] bg-white/[0.03] border border-white/10 rounded-xl p-5 space-y-3">

@@ -20,13 +20,13 @@ const useCases = [
     icon: terminal,
     title: 'Developer / DevOps',
     description: 'Deploy via CLI, configure with YAML, access via WP-CLI or SSH. Full root access, Git-based workflows, and real-time build logs.',
-    tag: 'Full Root Access'
+    tag: 'Pay hourly'
   },
   {
     icon: users,
     title: 'Agency / Freelancer',
     description: 'Manage multiple client environments under one account. Separate billing, separate dashboards, one powerful control panel.',
-    tag: 'Multi-Tenant'
+    tag: 'Multi-Site'
   },
   {
     icon: shoppingCart,
@@ -44,7 +44,7 @@ const useCases = [
     icon: shieldCheck,
     title: 'Enterprise',
     description: 'High availability, redundancy, Memory Optimised and CPU Optimised VM configurations, and dedicated Indian data centre hosting for compliance and performance.',
-    tag: 'ISO Compliant'
+    tag: 'Scalable'
   }
 ];
 
@@ -66,7 +66,7 @@ export default function UseCases() {
               One Platform, <span className="text-primary">Every Use Case</span>
             </h2>
             <p className="text-neutral-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-              SpinACloud delivers tailored compute environments for solo developers, agencies, and hyper-growth enterprises across India.
+              Spin&apos;A&apos;Cloud&trade; delivers tailored compute environments for solo developers, agencies, and hyper-growth enterprises across India.
             </p>
           </div>
 
@@ -114,7 +114,7 @@ export default function UseCases() {
           <h2 className="text-primary font-semibold tracking-wider text-lg uppercase mb-4 font-montserrat">Choose Your Path</h2>
           <h3 className="text-2xl md:text-4xl font-bold text-[#F0E3DE] mb-6 font-montserrat">One Platform, Every Use Case</h3>
           <p className="text-neutral-300 max-w-4xl mx-auto text-base font-nunito font-light">
-            SpinACloud is built for a wide range of cloud users - from solo developers to large enterprises. Choose the path that fits you:
+            Spin&apos;A&apos;Cloud&trade; is built for a wide range of cloud users - from solo developers to large enterprises. Choose the path that fits you:
           </p>
         </div>
 

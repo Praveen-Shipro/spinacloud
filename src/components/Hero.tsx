@@ -112,18 +112,18 @@ export default function Hero() {
   return (
     <section className="relative lg:pb-12 overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${heroBg.src})` }} >
       {/* Background Image */}
-      <Image className="absolute right-0 pointer-events-none " src={heroImg} alt="" />
+      <Image className="absolute bottom-0 lg:bottom-auto right-0 pointer-events-none " src={heroImg} alt="" />
       {/* Background patterns */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-orange-500/10 via-[#0a0a0a]/60 to-[#0a0a0a] opacity-90 pointer-events-none" />
       <div className="container mx-auto px-4 relative z-10 max-w-6xl 2xl:max-w-7xl" >
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 lg:mb-16">
           <div className="flex-1 space-y-8 text-center lg:text-left py-12 md:py-24 lg:pt-36 ">
-            <h2 className='text-sm lg:text-xl font-montserrat font-bold tracking-tight text-[#F0E3DE] opacity-75 uppercase mb-0'>Only Indian</h2>
-            <h1 className="font-montserrat text-5xl lg:text-50 font-bold tracking-tight text-[#F0E3DE] opacity-75 uppercase leading-[1.1] mb-0">
+            <h2 className='text-sm lg:text-xl font-montserrat font-bold tracking-tight text-[#F0E3DE]  uppercase mb-0'>Only Indian</h2>
+            <h1 className="font-montserrat text-5xl lg:text-50 font-bold tracking-tight text-[#F0E3DE]  uppercase leading-[1.1] mb-0">
               cloud hosting
             </h1>
-            <h2 className='text-xl lg:text-3xl font-montserrat font-bold tracking-tight text-[#F0E3DE] opacity-75 uppercase '>With Unlimited bandwidth</h2>
-            <button className="mx-auto lg:mx-0 flex items-center justify-center gap-2 px-6 py-2 bg-primary text-white border-2 border-primary rounded-full font-medium transition-all text-sm hover:cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 transition-all active:scale-95">
+            <h2 className='text-xl lg:text-3xl font-montserrat font-bold tracking-tight text-[#F0E3DE]  uppercase '>With Unmetered bandwidth</h2>
+            <button className="mx-auto lg:mx-0 flex items-center justify-center gap-2 px-6 py-2 bg-primary text-white border-2 border-primary rounded-full font-medium font-montserrat text-sm md:text-xl hover:cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 transition-all active:scale-95">
               Get Started
             </button>
           </div>
@@ -169,31 +169,31 @@ export default function Hero() {
 
           {/* Mobile/Tablet: horizontally scrollable cards (below lg) */}
           <div className="flex lg:hidden gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2 -mx-2 px-2">
-            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] bg-white/[0.03] border border-white/10 rounded-xl p-3">
+            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] border border-white/10 rounded-xl p-3 bg-[#303030]/80 backdrop-blur-sm">
               <div className="p-2 rounded-lg ">
                 <Image alt='icon' src={dataCentreIcon} width={48} height={48}/>
               </div>
               <span className="text-sm font-medium text-neutral-300">Indian Data<br/>Centres</span>
             </div>
-            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] bg-white/[0.03] border border-white/10 rounded-xl p-3">
+            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] border border-white/10 rounded-xl p-3 bg-[#303030]/80 backdrop-blur-sm">
               <div className="p-2 rounded-lg ">
                 <Image alt='icon' src={uptimeIcon} width={48} height={48}/>
               </div>
               <span className="text-sm font-medium text-neutral-300">99.9% Uptime<br/>SLA</span>
             </div>
-            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] bg-white/[0.03] border border-white/10 rounded-xl p-3">
+            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] border border-white/10 rounded-xl p-3 bg-[#303030]/80 backdrop-blur-sm">
               <div className="p-2 rounded-lg ">
                 <Image alt='icon' src={billingIcon} width={48} height={48}/>
               </div>
               <span className="text-sm font-medium text-neutral-300">Hourly Billing</span>
             </div>
-            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] bg-white/[0.03] border border-white/10 rounded-xl p-3">
+            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] border border-white/10 rounded-xl p-3 bg-[#303030]/80 backdrop-blur-sm">
               <div className="p-2 rounded-lg ">
                 <Image alt='icon' src={customerSupportIcon} width={48} height={48}/>
               </div>
               <span className="text-sm font-medium text-neutral-300">24×7 Expert<br/>Local Support</span>
             </div>
-            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] bg-white/[0.03] border border-white/10 rounded-xl p-3">
+            <div className="flex items-center gap-3 snap-start shrink-0 min-w-[200px] border border-white/10 rounded-xl p-3 bg-[#303030]/80 backdrop-blur-sm">
               <div className="p-2 rounded-lg ">
                 <Image alt='icon' src={paymentIcon} width={48} height={48}/>
               </div>

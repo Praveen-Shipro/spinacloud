@@ -14,7 +14,7 @@ const testimonials = [
   },
   {
     rating: 5,
-    text: "SpinACloud is incredibly fast and reliable. Our website loading speed improved instantly and deployment became super easy.",
+    text: "Spin'A'Cloud™ is incredibly fast and reliable. Our website loading speed improved instantly and deployment became super easy.",
     author: "Rahul Sharma",
     role: "Founder, TechSpire India",
     badge: "Enterprise User"
