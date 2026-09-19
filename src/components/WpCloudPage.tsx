@@ -177,7 +177,7 @@ export default function WpCloudPage() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-2">
             <Link
-              href="/#pricing"
+              href="/contact"
               className="px-8 py-3 rounded-full bg-linear-to-r from-[#FF6600]/50 to-[#FF9752] hover:bg-orange-600 text-white font-montserrat font-semibold transition-all duration-100 shadow-lg shadow-orange-500/25  active:scale-95 text-center text-sm md:text-base"
             >
               Get Started with Spin&apos;A&apos;Cloud&trade;
@@ -385,7 +385,7 @@ export default function WpCloudPage() {
       <section className="px-4">
         <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl  ${containerSpacing}`}>
           <div className="text-center mb-12">
-            <span className="text-xs font-bold font-montserrat uppercase tracking-widest text-primary inline-block mb-3">
+            <span className="text-xs font-bold font-montserrat uppercase tracking-widest text-primary inline-block mb-3 mt-10 md:mt-14">
               FAQ
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-inter text-[#F0E3DE] opacity-95">

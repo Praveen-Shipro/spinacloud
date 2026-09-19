@@ -19,7 +19,7 @@ export default function Header() {
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services' },
-    { name: 'WPCloud', href: '/wpcloud' },
+    { name: 'WP CloudOps', href: '/wpcloud' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -32,12 +32,12 @@ export default function Header() {
   return (
     <header className={`sticky top-0 z-50 w-full mx-auto px-4 backdrop-blur-md ${isHomepage ? '' : 'border-dashed'}`}>
       <div className={`mx-auto max-w-6xl 2xl:max-w-7xl ${isHomepage ? '' : 'lg:border-x border-dashed'}`}>
-        <div className="container mx-auto lg:px-4 flex items-center justify-between h-24 gap-4">
-            <Link href="/" className="flex items-center gap-2 shrink-0">
-              <Image src={logo} alt="Spin'A'Cloud™" width={200} height={25} className="w-auto h-6 md:h-7" />
+        <div className="container mx-auto lg:px-4 flex items-center justify-between h-24 gap-4 relative">
+            <Link href="/" className="flex items-center gap-2 shrink-0 z-10">
+              <Image src={logo} alt="Spin'A'Cloud™" width={260} height={45} className="w-auto h-8 sm:h-9 md:h-10 lg:h-11" priority />
             </Link>
 
-            <nav className="hidden lg:flex gap-6 items-center font-medium text-sm px-5 py-2.5 border rounded-3xl border-white/20">
+            <nav className="hidden lg:flex gap-6 items-center font-medium text-sm px-5 py-2.5 border rounded-3xl border-white/20 absolute left-1/2 -translate-x-1/2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -54,38 +54,7 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center gap-3">
-              {/* Design Variant Segmented Switch */}
-              {/* <div className="flex items-center p-1 bg-black/50 border border-white/15 rounded-full text-xs font-semibold backdrop-blur-md shadow-inner">
-                <button
-                  onClick={() => setDesignVariant('design1')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300 ${
-                    designVariant === 'design1'
-                      ? 'bg-neutral-800 text-white shadow-md border border-white/20'
-                      : 'text-neutral-400 hover:text-white'
-                  }`}
-                  title="Figma Classic Design"
-                >
-                  <Layers size={13} className={designVariant === 'design1' ? 'text-primary' : ''} />
-                  <span>Design 1</span>
-                </button>
-                
-                <button
-                  onClick={() => setDesignVariant('design2')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-300 ${
-                    designVariant === 'design2'
-                      ? 'bg-primary text-white border border-white/20'
-                      : 'text-neutral-400 hover:text-white'
-                  }`}
-                  title="Modern 3D Design"
-                >
-                  <Layers size={13} className={designVariant === 'design2' ? 'text-white' : ''} />
-                  <span>Design 2</span>
-                </button>
-              </div> */}
-
-              <button className="hidden sm:flex px-4 py-2 text-xs font-semibold bg-[#D85803] border-2 border-primary text-white rounded-full hover:cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 transition-all active:scale-95">
-                Calculator
-              </button>
+              {/* Calculator button hidden as requested */}
 
               <button 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

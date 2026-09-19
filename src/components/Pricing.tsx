@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Check, ArrowRight, Zap, Sparkles, ShieldCheck } from 'lucide-react';
 import { useDesign } from '@/context/DesignContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -260,15 +261,16 @@ export default function Pricing() {
                   ))}
                 </ul>
                 
-                <button 
-                  className={`w-full py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:cursor-pointer ${
+                <Link 
+                  href="/contact"
+                  className={`w-full py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:cursor-pointer text-center block ${
                     isBorderPrimary 
                       ? 'bg-primary text-white hover:bg-orange-600 hover:shadow-[0_0_20px_rgba(232,93,4,0.4)]' 
                       : 'bg-white/10 text-white hover:bg-white/20 hover:border-white/30'
                   }`}
                 >
                   Get Started
-                </button>
+                </Link>
               </div>
             );
           })}
@@ -310,15 +312,16 @@ export default function Pricing() {
                       ))}
                     </ul>
                     
-                    <button 
-                      className={`w-full py-3 rounded-full font-semibold transition-all duration-300 ${
+                    <Link 
+                      href="/contact"
+                      className={`w-full py-3 rounded-full font-semibold transition-all duration-300 text-center block ${
                         plan.highlighted 
                           ? 'bg-primary text-white' 
                           : 'bg-white/10 text-white'
                       }`}
                     >
                       Get Started
-                    </button>
+                    </Link>
                   </div>
                 </SwiperSlide>
               ))}

@@ -868,7 +868,7 @@ export default function ServicesPage() {
             <div className="grid md:grid-cols-12 gap-12 items-center">
               <div className="md:col-span-7 space-y-6">
                 <h3 className="text-primary font-semibold tracking-wider uppercase font-inter text-sm mb-4">
-                  Service 2: Managed WordPress Hosting Powered by WP Server Setup
+                  Service 2: Managed WordPress Hosting Powered by WP CloudOps
                 </h3>
                 <h2 className="text-md md:text-2xl font-bold text-[#F0E3DE] font-montserrat opacity-90 leading-tight">
                   WordPress hosting that manages itself.
@@ -949,7 +949,7 @@ export default function ServicesPage() {
           </div>) : (
               <div className='flex flex-col md:flex-row justify-around gap-3 md:gap-4 lg:gap-8 '>
                   <div className='flex flex-col gap-3 p-5 md:p-8 rounded-2xl w-full md:w-1/2 bg-[#D85803]'>
-                      <h2 className='text-xl md:text-2xl font-semibold font-montserrat'>WP Server Setup is available free of charge</h2>
+                      <h2 className='text-xl md:text-2xl font-semibold font-montserrat'>WP CloudOps is available free of charge</h2>
                       <p className='text-sm md:text-base font-nunito font-thin'> to all Spin&apos;A&apos;Cloud&trade; customers who choose to host WordPress on our infrastructure. It is not available as a standalone product - it is built for Spin&apos;A&apos;Cloud&trade; servers and works best on our NVMe-backed, OpenLiteSpeed-optimised VM stack.</p>
                   </div>
 
@@ -1021,12 +1021,12 @@ export default function ServicesPage() {
               >
                 Contact Us
               </Link>
-              <Link
+              {/* <Link
                 href="/#pricing"
                 className="px-8 py-3 rounded-full bg-white text-black font-montserrat font-semibold hover:bg-neutral-100 transition-colors text-base"
               >
                 View Plans
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

@@ -125,9 +125,17 @@ export default function Footer() {
           </div>
 
           <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
-            <p>© {new Date().getFullYear()} Spin'A'Cloud™ Technologies India. All rights reserved.</p>
-            <p className="flex items-center gap-1">
-              <span>Engineered with precision for high availability</span>
+            <p>© {new Date().getFullYear()} Spin&apos;A&apos;Cloud&trade;. All rights reserved.</p>
+            <p>
+              Developed by{' '}
+              <a
+                href="https://www.shirish.productions/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 hover:text-orange-400 transition-colors underline underline-offset-2"
+              >
+                Shirish Productions
+              </a>
             </p>
           </div>
         </div>
@@ -231,6 +239,21 @@ export default function Footer() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-gray-300/40 border-dotted flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+          <p>© {new Date().getFullYear()} Spin&apos;A&apos;Cloud&trade;. All rights reserved.</p>
+          <p>
+            Developed by{' '}
+            <a
+              href="https://www.shirish.productions/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-400 hover:text-primary transition-colors underline underline-offset-2"
+            >
+              Shirish Productions
+            </a>
+          </p>
         </div>
       </div>
     </footer>

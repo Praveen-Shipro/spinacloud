@@ -5,7 +5,7 @@ import UseCases from '@/components/UseCases';
 import Features from '@/components/Features';
 import Benefits from '@/components/Benefits';
 import HowItWorks from '@/components/HowItWorks';
-import Pricing from '@/components/Pricing';
+// import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 
@@ -33,7 +33,7 @@ export default function Home() {
       <Features />
       <Benefits />
       <HowItWorks />
-      <Pricing />
+      {/* <Pricing /> */}
       <Testimonials />
       <FAQ />
     </div>

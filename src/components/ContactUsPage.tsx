@@ -912,7 +912,7 @@ export default function ContactUsPage() {
       </section>
 
       {/* Follow Spin A Cloud Gradient Banner */}
-      <section className="px-4 ">
+      {/* <section className="px-4 ">
         <div className={`container mx-auto max-w-6xl 2xl:max-w-7xl py-16 border-b border-gray-300/40 ${containerSpacing}`}>
           <div className="rounded-2xl bg-[linear-gradient(to_right,#FF6600_55%,#FF9752_100%)] p-8 md:p-14 text-center text-white shadow-xl">
             <h2 className="text-2xl md:text-4xl font-bold font-montserrat mb-3 text-white">
@@ -937,7 +937,7 @@ export default function ContactUsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Quick Answers (Accordion FAQs) */}
       <section className="px-4 py-16 md:py-24">

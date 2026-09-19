@@ -51,13 +51,18 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 // 3. Email Destination
 $to = 'mail@spinacloud.com';
-$subject = "Spin'A'Cloud™ Inquiry: " . htmlspecialchars($topic) . " - " . htmlspecialchars($fullName);
+
+// Sanitize for email headers to prevent CRLF header injection
+$cleanEmail = str_replace(["\r", "\n"], '', $email);
+$cleanName = str_replace(["\r", "\n"], '', $fullName);
+$cleanTopic = str_replace(["\r", "\n"], '', $topic);
+$subject = "Spin'A'Cloud™ Inquiry: " . $cleanTopic . " - " . $cleanName;
 
 $headers = [];
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-type: text/html; charset=UTF-8';
 $headers[] = 'From: Spin\'A\'Cloud™ Contact Form <no-reply@spinacloud.in>';
-$headers[] = 'Reply-To: ' . htmlspecialchars($fullName) . ' <' . htmlspecialchars($email) . '>';
+$headers[] = 'Reply-To: ' . $cleanName . ' <' . $cleanEmail . '>';
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 
 $htmlBody = "<!DOCTYPE html>
@@ -114,7 +119,12 @@ $htmlBody = "<!DOCTYPE html>
 </body>
 </html>";
 
-$mailSuccess = mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+$additionalParams = '-fno-reply@spinacloud.in';
+$mailSuccess = @mail($to, $subject, $htmlBody, implode("\r\n", $headers), $additionalParams);
+if (!$mailSuccess) {
+    // Fallback without -f if the cPanel Exim policy restricts custom sendmail parameters
+    $mailSuccess = @mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+}
 
 if ($mailSuccess) {
     echo json_encode(['success' => true, 'message' => 'Your message has been sent successfully.']);

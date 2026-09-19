@@ -286,7 +286,7 @@ export default function AboutUs() {
                 {/* CTA Section */}
                 <section className="px-4 py-20 relative z-10">
                     <div className="container mx-auto flex flex-col sm:flex-row justify-center items-center gap-6">
-                        <Link href="#get-started" className="px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 w-full sm:w-auto text-center">
+                        <Link href="/contact" className="px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 w-full sm:w-auto text-center">
                             Start Hosting on Spin&apos;A&apos;Cloud&trade;
                         </Link>
                         <Link href="#plans" className="px-8 py-4 bg-white/[0.05] border border-white/10 text-white font-bold rounded-full hover:bg-white/[0.1] transition-all backdrop-blur-md w-full sm:w-auto text-center">
@@ -643,12 +643,12 @@ export default function AboutUs() {
             {/* CTA Section */}
             <section className="px-4 text-center">
                 <div className="container mx-auto flex flex-col sm:flex-row justify-center items-center gap-6">
-                    <Link href="#get-started" className="px-8 py-4 bg-linear-to-r from-[#FF6600]/50 to-[#FF9752] text-white font-semibold font-montserrat rounded-full hover:bg-orange-600 transition-colors w-full sm:w-auto">
+                    <Link href="/contact" className="px-8 py-4 bg-linear-to-r from-[#FF6600]/50 to-[#FF9752] text-white font-semibold font-montserrat rounded-full hover:bg-orange-600 transition-colors w-full sm:w-auto">
                         Start Hosting on Spin&apos;A&apos;Cloud&trade;
                     </Link>
-                    <Link href="#plans" className="px-8 py-4 bg-white text-black font-semibold font-montserrat rounded-full hover:bg-gray-200 transition-colors w-full sm:w-auto">
+                    {/* <Link href="#plans" className="px-8 py-4 bg-white text-black font-semibold font-montserrat rounded-full hover:bg-gray-200 transition-colors w-full sm:w-auto">
                         See Our Plans
-                    </Link>
+                    </Link> */}
                 </div>
             </section>
         </div>
