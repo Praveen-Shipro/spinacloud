@@ -306,7 +306,7 @@ export default function AboutUs() {
                 <div className= {`${containerSpacing} container mx-auto max-w-6xl 2xl:max-w-7xl pb-12 border-b border-gray-300/40`}>
                     <h2 className="text-primary font-semibold tracking-wider uppercase mb-4 font-montserrat text-lg">About us</h2>
                     <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#F0E3DE] mb-8 font-inter leading-tight max-w-4xl">
-                        We Are <span className="text-primary">SPIN &apos;A&apos; CLOUD&trade;</span><br />
+                        We Are <span className="text-primary">SPIN&apos;A&apos;CLOUD&trade;</span><br />
                         And We Are Spinning The Future Of Hosting In India
                     </h1>
                 </div>
